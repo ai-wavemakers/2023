@@ -1,0 +1,2920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI造浪者 — 面向年轻一代AI创造者的开放实验室。AI博主嘉年华·第一期，2026年5月24日，杭州·云谷中心">
+<title>AI造浪者 · AI Wave Makers</title>
+
+<!-- SVG Noise Filter -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0">
+  <defs>
+    <filter id="noise" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="linearRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noiseOut"/>
+      <feColorMatrix type="saturate" values="0" in="noiseOut" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="noise-subtle">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend mode="soft-light" in="SourceGraphic" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<style>
+  /* ==============================
+     CSS VARIABLES & RESET
+  ============================== */
+  :root {
+    --yellow-bright: #FFE08D;
+    --yellow-gold: #FFD47A;
+    --orange-warm: #F0A050;
+    --orange-light: #FFB870;
+    --orange-deep: #E8724A;
+    --orange-red: #E8724A;
+    --red-dark: #C95C35;
+    --white: #FFFFFF;
+    --cream: #FFFDF7;
+    --text-dark: #2D2117;
+    --text-mid: #4A3728;
+    --grad-hero: linear-gradient(165deg, #FFE08D 0%, #FFD47A 25%, #FFB870 60%, #F0956A 85%, #E8724A 100%);
+    --grad-section: linear-gradient(160deg, #FFFDF7 0%, #FFF5E0 50%, #FFE8CC 100%);
+    --grad-card: linear-gradient(135deg, #FFFFFF 0%, #FFFDF7 100%);
+    --shadow-warm: 0 8px 32px rgba(232, 114, 74, 0.14), 0 2px 8px rgba(240, 160, 80, 0.10);
+    --shadow-hover: 0 16px 48px rgba(232, 114, 74, 0.22), 0 4px 16px rgba(240, 160, 80, 0.16);
+    --radius-card: 20px;
+    --radius-btn: 50px;
+    --font-main: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-main);
+    background: #FFFDF7;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ==============================
+     GRAIN OVERLAY (global)
+  ============================== */
+  .grain-layer {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  /* Stronger grain for hero */
+  .grain-hero {
+    opacity: 0.06;
+  }
+
+  /* ==============================
+     STICKY HEADER / NAV
+  ============================== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(255, 230, 160, 0.88);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  header.scrolled {
+    background: rgba(255, 224, 141, 0.97);
+    box-shadow: 0 4px 24px rgba(232,114,74,0.12);
+  }
+
+  nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-img {
+    height: 38px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+    border-radius: 6px;
+  }
+
+  .nav-logo-text {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.2;
+  }
+
+  .nav-logo-sub {
+    font-size: 10px;
+    font-weight: 500;
+    color: #C95C35;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover {
+    background: rgba(232,114,74,0.10);
+    color: var(--orange-red);
+  }
+
+  .nav-cta {
+    background: linear-gradient(135deg, #E8724A, #F0A050) !important;
+    color: white !important;
+    box-shadow: 0 2px 12px rgba(232,114,74,0.30);
+  }
+
+  .nav-cta:hover {
+    background: linear-gradient(135deg, #C95C35, #E8724A) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(232,114,74,0.40) !important;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* Mobile nav */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: rgba(255, 235, 170, 0.98);
+    backdrop-filter: blur(16px);
+    z-index: 999;
+    padding: 16px 20px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 8px 32px rgba(232,114,74,0.15);
+  }
+
+  .mobile-nav.open { display: block; }
+
+  .mobile-nav a {
+    display: block;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    transition: background 0.2s;
+  }
+
+  .mobile-nav a:hover { background: rgba(230,74,25,0.1); }
+
+  .mobile-nav .mobile-cta {
+    display: block;
+    margin-top: 12px;
+    padding: 14px;
+    text-align: center;
+    background: linear-gradient(135deg, #E8724A, #F0A050);
+    color: white !important;
+    border-radius: var(--radius-btn);
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(232,114,74,0.35);
+    text-decoration: none;
+  }
+
+  /* ==============================
+     HERO SECTION
+  ============================== */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px 80px;
+    background: var(--grad-hero);
+    overflow: hidden;
+  }
+
+  /* Floating decorative shapes */
+  .hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .hero-shape-1 {
+    width: 500px; height: 500px;
+    background: white;
+    top: -150px; right: -150px;
+    animation: float1 8s ease-in-out infinite;
+  }
+
+  .hero-shape-2 {
+    width: 300px; height: 300px;
+    background: white;
+    bottom: -80px; left: -80px;
+    animation: float2 10s ease-in-out infinite;
+  }
+
+  .hero-shape-3 {
+    width: 180px; height: 180px;
+    background: #FF8C00;
+    top: 30%; left: 5%;
+    opacity: 0.15;
+    animation: float3 12s ease-in-out infinite;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+
+  .hero-shape-4 {
+    width: 120px; height: 120px;
+    background: #FFD700;
+    top: 15%; right: 10%;
+    opacity: 0.2;
+    animation: float2 9s ease-in-out infinite;
+    border-radius: 30% 70% 50% 50% / 50% 30% 70% 50%;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(-20px, 30px) scale(1.05); }
+    66% { transform: translate(15px, -20px) scale(0.97); }
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translate(0,0) rotate(0deg); }
+    50% { transform: translate(20px, -30px) rotate(15deg); }
+  }
+
+  @keyframes float3 {
+    0%, 100% { transform: translate(0,0) rotate(0deg) scale(1); }
+    40% { transform: translate(30px, 20px) rotate(20deg) scale(1.1); }
+    80% { transform: translate(-10px, 30px) rotate(-10deg) scale(0.95); }
+  }
+
+  /* Wave bottom decoration */
+  .hero-wave {
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 80px;
+    pointer-events: none;
+  }
+
+  .hero-brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    padding: 8px 20px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.5px;
+  }
+
+  .brand-dot {
+    width: 8px; height: 8px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #FFD700;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+  }
+
+  .hero-title-cn {
+    font-size: clamp(64px, 14vw, 120px);
+    font-weight: 900;
+    color: white;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-shadow: 0 4px 24px rgba(180,50,0,0.3);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-title-en {
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tagline {
+    font-size: clamp(15px, 2.5vw, 18px);
+    font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Sub-brands pills */
+  .sub-brands {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 44px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sub-brand-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+
+  .sub-brand-pill:hover {
+    background: rgba(255,255,255,0.28);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+  }
+
+  .sub-brand-pill .pill-icon {
+    font-size: 16px;
+  }
+
+  .sub-brand-pill.active {
+    background: rgba(255,255,255,0.32);
+    border-color: rgba(255,255,255,0.7);
+  }
+
+  .sub-brand-pill.coming {
+    opacity: 0.65;
+    border-style: dashed;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 36px;
+    background: white;
+    color: var(--orange-red);
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.28);
+    background: #FFF8E1;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 16px 36px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.8);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid rgba(255,255,255,0.7);
+    border-bottom: 2px solid rgba(255,255,255,0.7);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+    margin-top: 4px;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.7; }
+    50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+  }
+
+  /* ==============================
+     SECTION COMMONS
+  ============================== */
+  section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #E8724A, #F0A050);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    color: var(--text-dark);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .section-title span {
+    color: var(--orange-red);
+  }
+
+  .section-subtitle {
+    font-size: clamp(14px, 2vw, 17px);
+    color: #666;
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .section-header {
+    margin-bottom: 52px;
+  }
+
+  /* Fade-in animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+  .fade-in-delay-4 { transition-delay: 0.4s; }
+  .fade-in-delay-5 { transition-delay: 0.5s; }
+
+  /* ==============================
+     EVENT OVERVIEW (#event)
+  ============================== */
+  #event {
+    background: linear-gradient(160deg, #FFFDF7 0%, #FFF5E0 50%, #FFE8CC 100%);
+  }
+
+  #event::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .event-highlight-box {
+    background: linear-gradient(135deg, #E8724A, #F0A050);
+    border-radius: var(--radius-card);
+    padding: 28px 32px;
+    color: white;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-warm);
+  }
+
+  .event-highlight-box::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+
+  .event-highlight-box::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 20%;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .event-quote {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 700;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .event-quote::before {
+    content: '"';
+    font-size: 3em;
+    line-height: 0;
+    vertical-align: -0.4em;
+    opacity: 0.3;
+    margin-right: 4px;
+  }
+
+  .event-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .meta-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 4px 16px rgba(255,152,0,0.12);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .meta-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(255,152,0,0.2);
+  }
+
+  .meta-icon {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .meta-content .meta-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange-red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .meta-content .meta-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.4;
+  }
+
+  .event-format-banner {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 16px rgba(255,152,0,0.1);
+    margin-bottom: 36px;
+  }
+
+  .format-badge {
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #FFD47A, #F0A050);
+    color: white;
+    font-size: 28px;
+    font-weight: 900;
+    width: 64px; height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(240,160,80,0.30);
+  }
+
+  .format-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .format-text strong {
+    color: var(--orange-red);
+    font-weight: 800;
+  }
+
+  .event-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .btn-orange {
+    display: inline-block;
+    padding: 15px 34px;
+    background: linear-gradient(135deg, #E8724A, #F0A050);
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(232,114,74,0.32);
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-orange:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(232,114,74,0.42);
+    background: linear-gradient(135deg, #C95C35, #E8724A);
+  }
+
+  .btn-outline-orange {
+    display: inline-block;
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--orange-red);
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    border: 2px solid var(--orange-red);
+    transition: all 0.25s ease;
+  }
+
+  .btn-outline-orange:hover {
+    background: var(--orange-red);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* ==============================
+     SPEAKERS (#speakers)
+  ============================== */
+  #speakers {
+    background: linear-gradient(160deg, #FFFDF7 0%, #FFF5EC 100%);
+  }
+
+  #speakers::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    opacity: 0.025;
+    pointer-events: none;
+  }
+
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .speaker-card {
+    background: white;
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-warm);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .speaker-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--grad-hero);
+  }
+
+  .speaker-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .speaker-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+
+  .speaker-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .speaker-name {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .speaker-handle {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--orange-deep);
+    letter-spacing: 0.3px;
+  }
+
+  .speaker-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .speaker-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #FFF5E6, #FFE8C8);
+    color: var(--orange-red);
+  }
+
+  .speaker-bio {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .speaker-bio li {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .speaker-bio li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--orange-warm);
+    font-weight: 700;
+    font-size: 11px;
+    top: 5px;
+  }
+
+  .speaker-highlight {
+    background: linear-gradient(135deg, #FFFDF7, #FFF5E6);
+    border-left: 3px solid var(--orange-red);
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-red);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* Plus more card */
+  .speaker-more-card {
+    background: linear-gradient(135deg, #FFF5E6, #FFE8CC);
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed rgba(232,114,74,0.28);
+    min-height: 200px;
+    transition: all 0.3s ease;
+  }
+
+  .speaker-more-card:hover {
+    border-color: var(--orange-red);
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #FFE8CC, #FFD8B4);
+  }
+
+  .more-plus {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--orange-red);
+    line-height: 1;
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+
+  .more-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-mid);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  .more-sub {
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+  }
+
+  /* Avatar color variants */
+  .av-1 { background: linear-gradient(135deg, #E8924A, #F0B060); }
+  .av-2 { background: linear-gradient(135deg, #E8724A, #F09060); }
+  .av-3 { background: linear-gradient(135deg, #C96040, #E88060); }
+  .av-4 { background: linear-gradient(135deg, #8A60A0, #B080C0); }
+
+  /* ==============================
+     TICKETS (#tickets)
+  ============================== */
+  #tickets {
+    background: linear-gradient(160deg, #F0A050 0%, #E8724A 100%);
+    position: relative;
+  }
+
+  #tickets::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+    opacity: 0.05;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  #tickets .section-title { color: white; }
+  #tickets .section-subtitle { color: rgba(255,255,255,0.8); }
+  #tickets .section-tag {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+
+  .tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .ticket-card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-card);
+    padding: 30px 26px;
+    text-align: center;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ticket-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.18);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+  }
+
+  .ticket-card.featured {
+    background: rgba(255,255,255,0.22);
+    border-color: rgba(255,255,255,0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+
+  .ticket-card.featured:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 56px rgba(0,0,0,0.28);
+  }
+
+  .ticket-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: white;
+    color: var(--orange-red);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+  }
+
+  .ticket-type {
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0.8;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ticket-price {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  .ticket-price span {
+    font-size: 20px;
+    font-weight: 700;
+    vertical-align: super;
+    margin-right: 2px;
+  }
+
+  .ticket-unit {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 18px;
+  }
+
+  .ticket-features {
+    list-style: none;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .ticket-features li {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticket-features li::before {
+    content: '✓';
+    font-weight: 800;
+    color: #FFD700;
+    flex-shrink: 0;
+  }
+
+  .ticket-cta {
+    display: block;
+    padding: 13px 24px;
+    background: white;
+    color: var(--orange-red);
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .ticket-cta:hover {
+    background: #FFF8E1;
+    transform: scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  /* Registration flow */
+  .reg-flow {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 28px 32px;
+  }
+
+  .reg-flow-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    text-align: center;
+  }
+
+  .reg-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
+
+  .reg-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+  }
+
+  .step-num {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.2);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .step-label {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .step-arrow {
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
+    margin: 0 8px;
+    flex-shrink: 0;
+  }
+
+  /* ==============================
+     ROADMAP (#roadmap)
+  ============================== */
+  #roadmap {
+    background: #FFFDF7;
+  }
+
+  .roadmap-list {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .roadmap-list::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #FFD47A, #F0A050, #E8724A);
+    border-radius: 2px;
+  }
+
+  .roadmap-item {
+    position: relative;
+    margin-bottom: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .roadmap-item:last-child { margin-bottom: 0; }
+
+  .roadmap-dot {
+    position: absolute;
+    left: -34px;
+    top: 8px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #F0A050, #E8724A);
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(240,160,80,0.35);
+  }
+
+  .roadmap-item.current .roadmap-dot {
+    background: linear-gradient(135deg, #FFD47A, #F0A050);
+    width: 24px; height: 24px;
+    left: -36px;
+    box-shadow: 0 0 0 4px rgba(240,160,80,0.22), 0 2px 8px rgba(240,160,80,0.35);
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(255,152,0,0.25), 0 2px 8px rgba(255,152,0,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(255,152,0,0.15), 0 2px 8px rgba(255,152,0,0.4); }
+  }
+
+  .roadmap-item.future .roadmap-dot {
+    background: #DDD;
+    box-shadow: none;
+  }
+
+  .roadmap-content {
+    background: white;
+    border-radius: 16px;
+    padding: 18px 22px;
+    box-shadow: 0 4px 16px rgba(255,152,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .roadmap-item.current .roadmap-content {
+    background: linear-gradient(135deg, #FFFDF7, #FFF5E6);
+    border-left: 4px solid var(--orange-red);
+    box-shadow: 0 6px 24px rgba(232,114,74,0.12);
+  }
+
+  .roadmap-item.future .roadmap-content {
+    opacity: 0.55;
+  }
+
+  .roadmap-content:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 28px rgba(255,152,0,0.18);
+  }
+
+  .roadmap-num {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--orange-red);
+    background: linear-gradient(135deg, #FFF5E6, #FFE8CC);
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .roadmap-item.current .roadmap-num {
+    background: linear-gradient(135deg, #E8724A, #F0A050);
+    color: white;
+  }
+
+  .roadmap-info { flex: 1; }
+
+  .roadmap-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .roadmap-current-badge {
+    font-size: 10px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #E8724A, #F0A050);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    animation: badgePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes badgePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .roadmap-desc {
+    font-size: 13px;
+    color: #777;
+    font-weight: 500;
+  }
+
+  .roadmap-date {
+    font-size: 12px;
+    color: var(--orange-red);
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  /* ==============================
+     SPONSOR (#sponsor)
+  ============================== */
+  #sponsor {
+    background: linear-gradient(160deg, #FFFDF7 0%, #FFF0D8 100%);
+  }
+
+  .sponsor-value-banner {
+    background: linear-gradient(135deg, #E8724A, #F0A050);
+    border-radius: var(--radius-card);
+    padding: 28px 32px;
+    color: white;
+    margin-bottom: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    box-shadow: var(--shadow-warm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sponsor-value-banner::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .value-stat {
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .value-num {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .value-label {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.85;
+  }
+
+  .value-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+
+  .sponsor-tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .tier-card {
+    background: white;
+    border-radius: var(--radius-card);
+    padding: 24px 22px;
+    box-shadow: 0 4px 16px rgba(255,152,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .tier-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .tier-icon {
+    font-size: 28px;
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, #FFF5E6, #FFE8CC);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tier-name {
+    font-size: 17px;
+    font-weight: 900;
+    color: var(--text-dark);
+  }
+
+  .tier-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-red);
+    margin-top: 2px;
+  }
+
+  .tier-perks {
+    list-style: none;
+  }
+
+  .tier-perks li {
+    font-size: 13px;
+    color: #555;
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px dashed rgba(255,152,0,0.15);
+  }
+
+  .tier-perks li:last-child { border-bottom: none; }
+
+  .tier-perks li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--orange-warm);
+    font-size: 10px;
+    top: 8px;
+  }
+
+  .sponsor-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .sponsor-note {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  .sponsor-note strong {
+    color: var(--orange-red);
+  }
+
+  /* ==============================
+     SPEAKER CALL (#join)
+  ============================== */
+  #join {
+    background: linear-gradient(165deg, #FFE08D 0%, #FFD47A 25%, #FFB870 60%, #F0956A 85%, #E8724A 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #join::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .join-deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .join-deco-1 {
+    width: 400px; height: 400px;
+    background: white;
+    top: -200px; right: -100px;
+  }
+
+  .join-deco-2 {
+    width: 300px; height: 300px;
+    background: #FFD700;
+    bottom: -150px; left: -80px;
+  }
+
+  #join .section-title { color: white; }
+  #join .section-subtitle { color: rgba(255,255,255,0.82); }
+  #join .section-tag {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+  }
+
+  .join-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .join-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-card);
+    padding: 24px 20px;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .join-card:hover {
+    background: rgba(255,255,255,0.22);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  }
+
+  .join-card-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .join-card-title {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .join-card-desc {
+    font-size: 13px;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  .join-criteria {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    color: white;
+  }
+
+  .join-criteria-title {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    opacity: 0.9;
+  }
+
+  .criteria-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .criteria-tag {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .criteria-tag:hover {
+    background: rgba(255,255,255,0.28);
+  }
+
+  .join-need {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .join-need-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ==============================
+     FOOTER
+  ============================== */
+  footer {
+    background: #1A1A1A;
+    color: white;
+    padding: 56px 20px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FFD47A, #F0A050, #E8724A);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand {
+    flex: 1;
+    min-width: 220px;
+    max-width: 360px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .footer-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+    border-radius: 8px;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+
+  .footer-logo-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .footer-logo-en {
+    font-size: 11px;
+    color: rgba(255,200,0,0.8);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .footer-tagline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    font-style: italic;
+    padding: 14px 18px;
+    border-left: 3px solid #E8724A;
+    margin-top: 8px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .footer-links-col {
+    min-width: 140px;
+  }
+
+  .footer-col-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--orange-warm);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .footer-links-col a {
+    display: block;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+
+  .footer-links-col a:hover {
+    color: var(--orange-warm);
+  }
+
+  .footer-event-info {
+    min-width: 200px;
+    flex: 1;
+    max-width: 280px;
+  }
+
+  .event-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .event-info-item .info-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-copy span {
+    color: rgba(255,200,0,0.6);
+  }
+
+  /* Sub-brands row in footer */
+  .footer-sub-brands {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .footer-sub-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+    background: rgba(255,200,0,0.12);
+    color: rgba(255,200,0,0.7);
+    border: 1px solid rgba(255,200,0,0.2);
+  }
+
+  /* ==============================
+     RESPONSIVE
+  ============================== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-title-cn { font-size: clamp(52px, 16vw, 80px); }
+    .hero-shape-1 { width: 280px; height: 280px; }
+    .hero-shape-2 { width: 180px; height: 180px; }
+
+    .section-inner { padding: 60px 18px; }
+
+    .event-meta-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .event-format-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .reg-steps {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .step-arrow {
+      transform: rotate(90deg);
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .roadmap-list { padding-left: 32px; }
+    .roadmap-list::before { left: 10px; }
+    .roadmap-dot { left: -28px; }
+    .roadmap-item.current .roadmap-dot { left: -30px; }
+
+    .sponsor-value-banner {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .value-divider {
+      width: 60px;
+      height: 1px;
+    }
+
+    .footer-top {
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .footer-brand { max-width: 100%; }
+    .footer-event-info { max-width: 100%; }
+
+    .speakers-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tickets-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ticket-card.featured {
+      transform: none;
+      order: -1;
+    }
+
+    .join-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .event-meta-grid { grid-template-columns: 1fr; }
+    .sub-brands { flex-direction: column; align-items: center; }
+    .hero-cta-group { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+
+  /* Smooth transitions for all interactive elements */
+  a, button { -webkit-tap-highlight-color: transparent; }
+
+  /* ==============================
+     QR CODE MODAL
+  ============================== */
+  .qr-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(45, 33, 23, 0.6);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qr-modal-overlay.active {
+    display: flex;
+  }
+
+  .qr-modal-box {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 36px;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(45,33,23,0.25);
+    position: relative;
+    animation: modalPop 0.3s ease;
+  }
+
+  @keyframes modalPop {
+    from { transform: scale(0.88); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+
+  .qr-modal-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s;
+  }
+
+  .qr-modal-close:hover { color: #444; }
+
+  .qr-modal-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #2D2117;
+    margin-bottom: 20px;
+  }
+
+  .qr-placeholder {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 16px;
+    background: #F0EDE8;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #AAA;
+    font-size: 13px;
+    font-weight: 600;
+    border: 2px dashed #DDD;
+    overflow: hidden;
+  }
+
+  .qr-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .qr-placeholder .qr-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  .qr-modal-note {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+    background: #FFF5E6;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 600;
+  }
+
+  .qr-modal-note strong {
+    color: #E8724A;
+  }
+
+  /* Single unified purchase button */
+  .ticket-buy-center {
+    text-align: center;
+    margin: -20px 0 48px;
+  }
+
+  .btn-ticket-buy {
+    display: inline-block;
+    padding: 18px 56px;
+    background: white;
+    color: #E8724A;
+    font-size: 18px;
+    font-weight: 900;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    border: 2px solid rgba(255,255,255,0.6);
+  }
+
+  .btn-ticket-buy:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+    background: #FFFDF7;
+  }
+
+  /* Organizer info bar */
+  .organizer-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    padding: 8px 20px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.3px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ==============================
+     STICKY HEADER
+============================== -->
+<header id="site-header">
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="logo.png" alt="AI造浪者" class="nav-logo-img">
+      <div>
+        <div class="nav-logo-text">AI造浪者</div>
+        <div class="nav-logo-sub">AI WAVE MAKERS</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#event">嘉年华</a></li>
+      <li><a href="#speakers">嘉宾</a></li>
+      <li><a href="#tickets">票务</a></li>
+      <li><a href="#roadmap">系列</a></li>
+      <li><a href="#sponsor">赞助</a></li>
+      <li><a href="#join">加入</a></li>
+      <li><a href="https://fcnzmipn71d6.feishu.cn/wiki/CxzKw9rsBiNx79kt5dIc5B0xnuc?from=from_copylink" target="_blank" class="nav-cta">立即报名</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="菜单">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#event" onclick="closeMobileNav()">嘉年华详情</a>
+  <a href="#speakers" onclick="closeMobileNav()">分享嘉宾</a>
+  <a href="#tickets" onclick="closeMobileNav()">票务购买</a>
+  <a href="#roadmap" onclick="closeMobileNav()">系列规划</a>
+  <a href="#sponsor" onclick="closeMobileNav()">赞助合作</a>
+  <a href="#join" onclick="closeMobileNav()">嘉宾招募</a>
+  <a href="https://fcnzmipn71d6.feishu.cn/wiki/CxzKw9rsBiNx79kt5dIc5B0xnuc?from=from_copylink" target="_blank" class="mobile-cta">🎟 立即报名</a>
+</div>
+
+
+<!-- ==============================
+     1. HERO
+============================== -->
+<section id="hero">
+  <div class="grain-layer grain-hero"></div>
+
+  <!-- Decorative shapes -->
+  <div class="hero-shape hero-shape-1"></div>
+  <div class="hero-shape hero-shape-2"></div>
+  <div class="hero-shape hero-shape-3"></div>
+  <div class="hero-shape hero-shape-4"></div>
+
+  <div class="hero-brand-badge">
+    <div class="brand-dot"></div>
+    年轻一代AI创造者的开放实验室
+  </div>
+
+  <div class="fade-in" style="position:relative;z-index:2;">
+    <img src="logo-transparent.png" alt="AI造浪者" style="max-width:700px;width:85%;display:block;margin:0 auto;filter:drop-shadow(0 2px 16px rgba(0,0,0,0.08));">
+  </div>
+  <p class="hero-title-en fade-in fade-in-delay-1">AI Wave Makers</p>
+  <p class="hero-tagline fade-in fade-in-delay-2">面向年轻一代AI创造者的开放实验室<br>不讲虚的，只讲真实方法论与变现经验</p>
+  <div class="organizer-bar fade-in fade-in-delay-2">
+    🏛 主办方：自由良渚AI实验室 · 荷气生财AI商业增长
+  </div>
+
+  <!-- Sub-brands -->
+  <div class="sub-brands fade-in fade-in-delay-3">
+    <div class="sub-brand-pill active">
+      <span class="pill-icon">🎉</span>
+      <div>
+        <div style="font-size:14px;font-weight:900;">AI造浪者嘉年华</div>
+        <div style="font-size:11px;opacity:0.8;font-weight:500;">月度思想盛宴·第一期 5月24日</div>
+      </div>
+    </div>
+    <div class="sub-brand-pill">
+      <span class="pill-icon">🎙</span>
+      <div>
+        <div style="font-size:14px;font-weight:900;">AI造浪者访谈</div>
+        <div style="font-size:11px;opacity:0.8;font-weight:500;">对话AI创业者与博主</div>
+      </div>
+    </div>
+    <div class="sub-brand-pill coming">
+      <span class="pill-icon">✦</span>
+      <div>
+        <div style="font-size:14px;font-weight:800;">AI造浪者×</div>
+        <div style="font-size:11px;opacity:0.8;font-weight:500;">更多子品牌建设中...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cta-group fade-in fade-in-delay-4">
+    <a href="https://fcnzmipn71d6.feishu.cn/wiki/CxzKw9rsBiNx79kt5dIc5B0xnuc?from=from_copylink" target="_blank" class="btn-primary">🎟 立即报名 · 5月24日</a>
+    <a href="#event" class="btn-secondary">了解详情 ↓</a>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+
+  <!-- Wave decoration -->
+  <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#FFF8E1"/>
+  </svg>
+</section>
+
+
+<!-- ==============================
+     2. EVENT OVERVIEW
+============================== -->
+<section id="event">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">· 嘉年华 · 第一期 ·</div>
+      <h2 class="section-title">AI博主嘉年华<span>·内容破局专场</span></h2>
+      <p class="section-subtitle">面向年轻一代「AI创造者的开放实验室」</p>
+    </div>
+
+    <!-- Quote highlight -->
+    <div class="event-highlight-box fade-in">
+      <p class="event-quote">不讲趋势不讲虚的，只讲真实方法论和变现经验。8位AI博主，8小时硬核分享，全天深度社交——不寒暄、不注水。</p>
+    </div>
+
+    <!-- Meta cards -->
+    <div class="event-meta-grid">
+      <div class="meta-card fade-in fade-in-delay-1">
+        <div class="meta-icon">📅</div>
+        <div class="meta-content">
+          <div class="meta-label">日期时间</div>
+          <div class="meta-value">2026年5月24日（周六）<br>09:30 – 18:00</div>
+        </div>
+      </div>
+      <div class="meta-card fade-in fade-in-delay-2">
+        <div class="meta-icon">📍</div>
+        <div class="meta-content">
+          <div class="meta-label">活动地点</div>
+          <div class="meta-value">杭州 · 云谷中心<br>路演厅</div>
+        </div>
+      </div>
+      <div class="meta-card fade-in fade-in-delay-3">
+        <div class="meta-icon">🎯</div>
+        <div class="meta-content">
+          <div class="meta-label">适合人群</div>
+          <div class="meta-value">AI创业者 · 自媒体创作者<br>AI从业者与爱好者</div>
+        </div>
+      </div>
+      <div class="meta-card fade-in fade-in-delay-4">
+        <div class="meta-icon">👥</div>
+        <div class="meta-content">
+          <div class="meta-label">活动规模</div>
+          <div class="meta-value">观众多为AI创作者、创业者们<br>8位博主同台分享</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Format -->
+    <div class="event-format-banner fade-in">
+      <div class="format-badge">⚡</div>
+      <div class="format-text">
+        <strong>8位AI博主 · 30分钟闪电分享</strong> + 全天深度社交<br>
+        每位嘉宾用真实数据说话：变现路径、起号方法论、品牌合作避坑指南——全是干货，没有水分
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="event-cta-row fade-in">
+      <a href="https://fcnzmipn71d6.feishu.cn/wiki/CxzKw9rsBiNx79kt5dIc5B0xnuc?from=from_copylink" target="_blank" class="btn-orange">🎟 立即报名</a>
+      <a href="https://fcnzmipn71d6.feishu.cn/wiki/CxzKw9rsBiNx79kt5dIc5B0xnuc?from=from_copylink" target="_blank" class="btn-outline-orange">查看完整详情页 →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     3. SPEAKERS
+============================== -->
+<section id="speakers">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">· 分享嘉宾 ·</div>
+      <h2 class="section-title">8位<span>AI博主</span>，真实经验</h2>
+      <p class="section-subtitle">每一位都是跑通了商业闭环的实战派，没有空降嘉宾，没有PPT念稿子。</p>
+    </div>
+
+    <div class="speakers-grid">
+
+      <!-- Speaker 1: 麦当 -->
+      <div class="speaker-card fade-in">
+        <div class="speaker-header">
+          <div class="speaker-avatar av-1">麦</div>
+          <div>
+            <div class="speaker-name">麦当mdldm</div>
+            <div class="speaker-handle">@麦当mdldm</div>
+          </div>
+        </div>
+        <div class="speaker-tags">
+          <span class="speaker-tag">AI教学</span>
+          <span class="speaker-tag">知识付费</span>
+          <span class="speaker-tag">全网3.6w粉</span>
+        </div>
+        <ul class="speaker-bio">
+          <li>B站AI教学博主，全网3.6w粉丝</li>
+          <li>前阿里云AI算力平台开发，裸辞All In知识付费</li>
+          <li>累计学员10,000+，Coze课程播放量100w+</li>
+          <li>国家认证高级人工智能训练师</li>
+          <li>独创AI四大理论体系（大炮/桥梁/灯塔/权杖）与HKR内容心法</li>
+        </ul>
+        <div class="speaker-highlight">「从阿里云AI开发到AI知识博主——从0到1w学员的变现之路」</div>
+      </div>
+
+      <!-- Speaker 2: 塔塔 -->
+      <div class="speaker-card fade-in fade-in-delay-1">
+        <div class="speaker-header">
+          <div class="speaker-avatar av-2">塔</div>
+          <div>
+            <div class="speaker-name">塔塔@Tatalab</div>
+            <div class="speaker-handle">@Tatalab</div>
+          </div>
+        </div>
+        <div class="speaker-tags">
+          <span class="speaker-tag">设计师转型</span>
+          <span class="speaker-tag">品牌变现</span>
+          <span class="speaker-tag">2.5w粉丝</span>
+        </div>
+        <ul class="speaker-bio">
+          <li>设计师转型AI赛道内容创业，全网2.5w粉丝</li>
+          <li>公众号篇均4000+，小红书单条最高25w阅读</li>
+          <li>商单合作Kimi、通义千问、百度文心等10+品牌</li>
+          <li>受邀百度秒哒开发者大会给李彦宏演示产品</li>
+        </ul>
+        <div class="speaker-highlight">「不做网红，做品牌——AI创作者的多元变现之路」</div>
+      </div>
+
+      <!-- Speaker 3: 西门聪明蛋 -->
+      <div class="speaker-card fade-in fade-in-delay-2">
+        <div class="speaker-header">
+          <div class="speaker-avatar av-3">西</div>
+          <div>
+            <div class="speaker-name">西门聪明蛋</div>
+            <div class="speaker-handle">@西门聪明蛋</div>
+          </div>
+        </div>
+        <div class="speaker-tags">
+          <span class="speaker-tag">快速起号</span>
+          <span class="speaker-tag">AI工具/vibe</span>
+          <span class="speaker-tag">全网5.8w粉</span>
+        </div>
+        <ul class="speaker-bio">
+          <li>中国人民大学人工智能专业，前阿里云AI产品经理</li>
+          <li>8条视频做到全网5w粉，百万播放爆款3条</li>
+          <li>商单每月3–5条，最高报价5–6k</li>
+          <li>企业AI增长服务已服务中大型公司2家，服务费20w+</li>
+          <li>知识付费（AI+自媒体课程）变现30w，学员200+</li>
+        </ul>
+        <div class="speaker-highlight">「从小白到AI万粉博主——7条视频5w粉的起号经验分享」</div>
+      </div>
+
+      <!-- Speaker 4: AI张同学 -->
+      <div class="speaker-card fade-in fade-in-delay-3">
+        <div class="speaker-header">
+          <div class="speaker-avatar av-4">张</div>
+          <div>
+            <div class="speaker-name">AI张同学</div>
+            <div class="speaker-handle">@AI张同学</div>
+          </div>
+        </div>
+        <div class="speaker-tags">
+          <span class="speaker-tag">AI一人公司</span>
+          <span class="speaker-tag">月入4w+</span>
+          <span class="speaker-tag">10w+粉丝</span>
+        </div>
+        <ul class="speaker-bio">
+          <li>前网易设计组长，被裁后转型AI一人公司</li>
+          <li>全网10w+粉丝，单条视频73w播放</li>
+          <li>AI课程已售2000+套，商单报价1w/条</li>
+          <li>月稳定变现4w+，真实可复制的商业闭环</li>
+        </ul>
+        <div class="speaker-highlight">「单月稳定变现4w+，我的AI一人公司如何站稳脚跟」</div>
+      </div>
+
+      <!-- More speakers coming -->
+      <div class="speaker-more-card fade-in fade-in-delay-4">
+        <div class="more-plus">+2</div>
+        <div class="more-text">更多嘉宾持续公布中</div>
+        <div class="more-sub">名额招募中，欢迎申请加入</div>
+        <br>
+        <button onclick="openQrModal('speaker')" style="display:inline-block;margin-top:8px;padding:10px 20px;background:linear-gradient(135deg,#E8724A,#F0A050);color:white;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(232,114,74,0.30);transition:all 0.2s ease;border:none;cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">申请成为嘉宾 →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     4. TICKETS
+============================== -->
+<section id="tickets">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">· 门票购买 ·</div>
+      <h2 class="section-title">早鸟价格<span>·名额有限</span></h2>
+      <p class="section-subtitle">AI创作者、创业者观众，早报名早入场，5月15日截止早鸟优惠。</p>
+    </div>
+
+    <div class="tickets-grid">
+
+      <!-- Early Bird -->
+      <div class="ticket-card featured fade-in">
+        <div class="ticket-badge">🔥 最划算</div>
+        <div class="ticket-type">早鸟票</div>
+        <div class="ticket-price"><span>¥</span>218</div>
+        <div class="ticket-unit">/ 人</div>
+        <ul class="ticket-features">
+          <li>限量50张，先到先得</li>
+          <li>5月15日前截止</li>
+          <li>全天活动通票</li>
+          <li>精美会议手册</li>
+          <li>活动全程茶歇</li>
+        </ul>
+        <span class="ticket-cta" style="display:block;padding:13px 24px;background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.6);font-size:14px;font-weight:600;border-radius:var(--radius-btn);text-align:center;">早鸟票 ¥218</span>
+      </div>
+
+      <!-- Group -->
+      <div class="ticket-card fade-in fade-in-delay-1">
+        <div class="ticket-type">三人拼团票</div>
+        <div class="ticket-price"><span>¥</span>238</div>
+        <div class="ticket-unit">/ 人（3人同行）</div>
+        <ul class="ticket-features">
+          <li>3人同时报名享团购价</li>
+          <li>5月15日前截止</li>
+          <li>全天活动通票</li>
+          <li>精美会议手册</li>
+          <li>活动全程茶歇</li>
+        </ul>
+        <span class="ticket-cta" style="display:block;padding:13px 24px;background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.6);font-size:14px;font-weight:600;border-radius:var(--radius-btn);text-align:center;">三人拼团 ¥238</span>
+      </div>
+
+      <!-- Standard -->
+      <div class="ticket-card fade-in fade-in-delay-2">
+        <div class="ticket-type">标准票</div>
+        <div class="ticket-price"><span>¥</span>268</div>
+        <div class="ticket-unit">/ 人</div>
+        <ul class="ticket-features">
+          <li>5月15日后正价购票</li>
+          <li>全天活动通票</li>
+          <li>精美会议手册</li>
+          <li>活动全程茶歇</li>
+          <li>名额不保证，建议提前购</li>
+        </ul>
+        <span class="ticket-cta" style="display:block;padding:13px 24px;background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.6);font-size:14px;font-weight:600;border-radius:var(--radius-btn);text-align:center;">标准票 ¥268</span>
+      </div>
+
+    </div>
+
+    <!-- Single buy button -->
+    <div class="ticket-buy-center fade-in">
+      <a href="https://fcnzmipn71d6.feishu.cn/wiki/CxzKw9rsBiNx79kt5dIc5B0xnuc?from=from_copylink" target="_blank" class="btn-ticket-buy">🎟 立即购票</a>
+    </div>
+
+    <!-- Registration flow -->
+    <div class="reg-flow fade-in">
+      <div class="reg-flow-title">📋 报名流程</div>
+      <div class="reg-steps">
+        <div class="reg-step">
+          <div class="step-num">1</div>
+          <div class="step-label">扫码付款</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="reg-step">
+          <div class="step-num">2</div>
+          <div class="step-label">填写飞书问卷</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="reg-step">
+          <div class="step-num">3</div>
+          <div class="step-label">添加微信</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="reg-step">
+          <div class="step-num">✓</div>
+          <div class="step-label">报名成功！</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==============================
+     5. ROADMAP
+============================== -->
+<section id="roadmap">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">· 系列规划 ·</div>
+      <h2 class="section-title">月度系列，<span>持续造浪</span></h2>
+      <p class="section-subtitle">嘉年华是月更系列，每期聚焦一个细分赛道，用连续性积累内容厚度。</p>
+    </div>
+
+    <div class="roadmap-list">
+
+      <div class="roadmap-item current fade-in">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">01</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">
+              AI博主 · 内容破局专场
+              <span class="roadmap-current-badge">● 当前</span>
+            </div>
+            <div class="roadmap-date">2026年5月24日 · 杭州·云谷中心路演厅</div>
+            <div class="roadmap-desc">8位AI博主分享内容起号、变现路径、品牌合作实战经验</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-item future fade-in fade-in-delay-1">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">02</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">AI出海 · 全球化专场</div>
+            <div class="roadmap-desc">聚焦AI产品海外增长、多语言内容、跨境商业化</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-item future fade-in fade-in-delay-2">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">03</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">AI应用 · 真需求真市场</div>
+            <div class="roadmap-desc">AI落地应用、行业解决方案、真实用户场景验证</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-item future fade-in fade-in-delay-3">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">04</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">AI硬件 · 新物种专场</div>
+            <div class="roadmap-desc">AI硬件创业、消费级AI产品设计与量产经验</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-item future fade-in fade-in-delay-4">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">05</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">AI商业化增长 · 变现实战专场</div>
+            <div class="roadmap-desc">付费转化、私域运营、AI产品收费模型设计</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-item future fade-in">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">06</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">AIGC · 内容生产革命专场</div>
+            <div class="roadmap-desc">AI辅助创作、图文视频批量生产、AIGC商业变现</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-item future fade-in fade-in-delay-1">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">07</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">AI+教育 · 新一代学习方式专场</div>
+            <div class="roadmap-desc">AI教育产品、个性化学习、教育AI创业路径</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-item future fade-in fade-in-delay-2">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-content">
+          <div class="roadmap-num">⋯</div>
+          <div class="roadmap-info">
+            <div class="roadmap-title">更多专场规划中</div>
+            <div class="roadmap-desc">欢迎提议你想看到的主题，造浪永不停</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     6. SPONSOR
+============================== -->
+<section id="sponsor">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">· 赞助合作 ·</div>
+      <h2 class="section-title">成为<span>合作伙伴</span></h2>
+      <p class="section-subtitle">触达AI创作者、创业者观众群体，配合博主矩阵传播，月更系列带来长期曝光价值。</p>
+    </div>
+
+    <!-- Value stats -->
+    <div class="sponsor-value-banner fade-in">
+      <div class="value-stat">
+        <div class="value-num">100<span style="font-size:22px">+</span></div>
+        <div class="value-label">AI创作者、创业者观众</div>
+      </div>
+      <div class="value-divider"></div>
+      <div class="value-stat">
+        <div class="value-num">8</div>
+        <div class="value-label">AI博主矩阵传播</div>
+      </div>
+      <div class="value-divider"></div>
+      <div class="value-stat">
+        <div class="value-num">月更</div>
+        <div class="value-label">系列长期合作机会</div>
+      </div>
+      <div class="value-divider"></div>
+      <div class="value-stat">
+        <div class="value-num">10<span style="font-size:22px">+</span></div>
+        <div class="value-label">配套内容传播渠道</div>
+      </div>
+    </div>
+
+    <!-- Tier cards -->
+    <div class="sponsor-tiers">
+
+      <div class="tier-card fade-in">
+        <div class="tier-header">
+          <div class="tier-icon">🌟</div>
+          <div>
+            <div class="tier-name">协办方</div>
+            <div class="tier-price">5,000 – 10,000元（限2家）</div>
+          </div>
+        </div>
+        <ul class="tier-perks">
+          <li>主舞台品牌曝光（背板、主持人口播）</li>
+          <li>嘉宾海报联合署名</li>
+          <li>活动通讯录（100+ AI从业者信息）</li>
+          <li>博主自媒体二次传播内容</li>
+          <li>全系列长期合作优先资格</li>
+          <li>4张免费参会名额</li>
+        </ul>
+      </div>
+
+      <div class="tier-card fade-in fade-in-delay-1">
+        <div class="tier-header">
+          <div class="tier-icon">🏢</div>
+          <div>
+            <div class="tier-name">场地/品牌支持伙伴</div>
+            <div class="tier-price">资源置换 / 协商</div>
+          </div>
+        </div>
+        <ul class="tier-perks">
+          <li>提供优质场地空间</li>
+          <li>活动物料品牌露出</li>
+          <li>现场品牌区域展示</li>
+          <li>社群长期推广合作</li>
+          <li>2张免费参会名额</li>
+        </ul>
+      </div>
+
+      <div class="tier-card fade-in fade-in-delay-2">
+        <div class="tier-header">
+          <div class="tier-icon">🤝</div>
+          <div>
+            <div class="tier-name">单项合作赞助</div>
+            <div class="tier-price">按项协商</div>
+          </div>
+        </div>
+        <ul class="tier-perks">
+          <li>🪧 展位赞助（桌椅+展架）</li>
+          <li>☕ 茶歇/餐饮赞助（冠名权）</li>
+          <li>🎁 伴手礼/纪念品赞助</li>
+          <li>🏆 抽奖奖品赞助（品牌露出）</li>
+          <li>相应品牌曝光权益匹配</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="sponsor-cta-row fade-in">
+      <button onclick="openQrModal('sponsor')" class="btn-orange" style="border:none;cursor:pointer;">查看完整合作方案 →</button>
+      <div class="sponsor-note">
+        扫码联系创始人，提供详细权益说明与报价<br>
+        月更系列合作，一次合作获得多期持续曝光
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==============================
+     7. SPEAKER CALL
+============================== -->
+<section id="join">
+  <div class="join-deco-circle join-deco-1"></div>
+  <div class="join-deco-circle join-deco-2"></div>
+  <div class="grain-layer"></div>
+
+  <div class="section-inner" style="position:relative;z-index:2;">
+    <div class="section-header fade-in">
+      <div class="section-tag">· 嘉宾招募 ·</div>
+      <h2 class="section-title">加入造浪者，<span style="color:#FFFFFF;text-shadow:0 1px 8px rgba(45,33,23,0.25);">上台分享</span></h2>
+      <p class="section-subtitle">我们不要大咖撑场面，只要跑通了商业闭环的真实创作者。你的真实经历，才是最好的内容。</p>
+    </div>
+
+    <!-- Criteria cards -->
+    <div class="join-grid">
+      <div class="join-card fade-in">
+        <div class="join-card-icon">💡</div>
+        <div class="join-card-title">内容独特不从众</div>
+        <div class="join-card-desc">有自己的视角和方法论，不是搬运和复述别人的，有真实的创作历程可以分享</div>
+      </div>
+      <div class="join-card fade-in fade-in-delay-1">
+        <div class="join-card-icon">💰</div>
+        <div class="join-card-title">变现已跑通闭环</div>
+        <div class="join-card-desc">通过AI内容创作实现了商业变现，无论是课程、商单、咨询还是其他模式，有数据说话</div>
+      </div>
+      <div class="join-card fade-in fade-in-delay-2">
+        <div class="join-card-icon">🌐</div>
+        <div class="join-card-title">领域不限</div>
+        <div class="join-card-desc">AI科技/工具测评/商业化/AIGC/教育/设计/出海……只要跟AI有关，都欢迎申请</div>
+      </div>
+    </div>
+
+    <!-- Current needs -->
+    <div class="join-need fade-in">
+      <div class="join-need-icon">🎯</div>
+      <div>
+        <strong>当前急需补充嘉宾：</strong>公众号博主（具有较大公众号读者群）、推特/X博主（base杭州或可来杭州参与）
+      </div>
+    </div>
+
+    <!-- Criteria tags -->
+    <div class="join-criteria fade-in">
+      <div class="join-criteria-title">✦ 嘉宾选人标准 — 我们看重什么</div>
+      <div class="criteria-tags">
+        <span class="criteria-tag">真实变现数据</span>
+        <span class="criteria-tag">独特内容视角</span>
+        <span class="criteria-tag">清晰方法论</span>
+        <span class="criteria-tag">愿意分享干货</span>
+        <span class="criteria-tag">商业闭环跑通</span>
+        <span class="criteria-tag">AI相关赛道</span>
+        <span class="criteria-tag">公众号/推特博主优先</span>
+        <span class="criteria-tag">base杭州/可到场</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;" class="fade-in">
+      <button onclick="openQrModal('speaker')" class="btn-primary" style="color:var(--orange-red);display:inline-block;background:white;border:none;cursor:pointer;">
+        申请成为分享嘉宾 →
+      </button>
+      <p style="margin-top:12px;color:rgba(255,255,255,0.75);font-size:13px;font-weight:500;">扫码添加微信，我们会在3个工作日内回复</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==============================
+     FOOTER
+============================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo.png" alt="AI造浪者" class="footer-logo-img">
+          <div>
+            <div class="footer-logo-name">AI造浪者</div>
+            <div class="footer-logo-en">AI WAVE MAKERS</div>
+          </div>
+        </div>
+        <div class="footer-tagline">
+          面向年轻一代「AI创造者的开放实验室」
+        </div>
+        <div class="footer-sub-brands" style="margin-top:16px;">
+          <span class="footer-sub-pill">🎉 嘉年华</span>
+          <span class="footer-sub-pill">🎙 访谈</span>
+          <span class="footer-sub-pill">✦ 更多建设中</span>
+        </div>
+      </div>
+
+      <!-- Event Info -->
+      <div class="footer-event-info">
+        <div class="footer-col-title">活动信息</div>
+        <div class="event-info-item">
+          <span class="info-icon">📅</span>
+          <span>2026年5月24日（周六）09:30–18:00</span>
+        </div>
+        <div class="event-info-item">
+          <span class="info-icon">📍</span>
+          <span>杭州·云谷中心路演厅</span>
+        </div>
+        <div class="event-info-item">
+          <span class="info-icon">🎟</span>
+          <span>早鸟票 ¥218 / 标准票 ¥268</span>
+        </div>
+        <div class="event-info-item">
+          <span class="info-icon">👥</span>
+          <span>观众多为AI创作者、创业者们</span>
+        </div>
+        <div class="event-info-item">
+          <span class="info-icon">⚡</span>
+          <span>8位AI博主·30分钟闪电分享</span>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="footer-links-col">
+        <div class="footer-col-title">快速链接</div>
+        <a href="https://fcnzmipn71d6.feishu.cn/share/base/form/shrcnx0t5BG2QyBqcSA4Fo0dcSh" target="_blank">🎟 观众报名</a>
+        <a href="https://fcnzmipn71d6.feishu.cn/wiki/CxzKw9rsBiNx79kt5dIc5B0xnuc?from=from_copylink" target="_blank">📋 活动详情</a>
+        <a href="https://fcnzmipn71d6.feishu.cn/wiki/GiZMw8mlZigTT5kj21dc24XvnMe?from=from_copylink" target="_blank">🤝 赞助方案</a>
+        <a href="https://fcnzmipn71d6.feishu.cn/docx/KtxndRtYxolWE1xeJb4ckWChncg?from=from_copylink" target="_blank">🎤 嘉宾申请</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        © 2026 <span>AI造浪者 · AI Wave Makers</span> · 面向年轻一代AI创造者的开放实验室
+      </div>
+      <div class="footer-copy" style="color:rgba(255,200,0,0.4);font-style:italic;">
+        造浪，不止步 🌊
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ==============================
+     QR CODE MODAL
+============================== -->
+<div class="qr-modal-overlay" id="qr-modal" onclick="closeQrModal(event)">
+  <div class="qr-modal-box">
+    <button class="qr-modal-close" onclick="closeQrModal(null, true)" aria-label="关闭">&times;</button>
+    <div class="qr-modal-title" id="qr-modal-title">扫码添加微信</div>
+    <div class="qr-placeholder">
+      <img src="qrcode.jpg" alt="微信二维码">
+    </div>
+    <div class="qr-modal-note" id="qr-modal-note">添加微信请备注「合作伙伴」，不备注不会通过</div>
+  </div>
+</div>
+
+<!-- ==============================
+     JS: Scroll / Animations / Nav
+============================== -->
+<script>
+  // ── Header scroll effect
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // ── Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  let mobileOpen = false;
+
+  hamburger.addEventListener('click', () => {
+    mobileOpen = !mobileOpen;
+    mobileNav.classList.toggle('open', mobileOpen);
+    // Animate hamburger
+    const spans = hamburger.querySelectorAll('span');
+    if (mobileOpen) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  });
+
+  function closeMobileNav() {
+    mobileOpen = false;
+    mobileNav.classList.remove('open');
+    const spans = hamburger.querySelectorAll('span');
+    spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+
+  // Close mobile nav on outside click
+  document.addEventListener('click', (e) => {
+    if (mobileOpen && !mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
+
+  // ── Intersection Observer for fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Don't unobserve to keep animation if user scrolls back
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Trigger hero elements immediately
+  document.querySelectorAll('#hero .fade-in').forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.add('visible');
+    }, i * 120 + 100);
+  });
+
+  // ── Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 64; // header height
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Active nav link highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.style.fontWeight = '';
+          link.style.color = '';
+          if (link.getAttribute('href') === '#' + id) {
+            link.style.fontWeight = '800';
+            link.style.color = 'var(--orange-red)';
+          }
+        });
+      }
+    });
+  }, {
+    threshold: 0.3,
+    rootMargin: '-60px 0px -50% 0px'
+  });
+
+  sections.forEach(s => navObserver.observe(s));
+
+  // ── QR Modal
+  const qrModal = document.getElementById('qr-modal');
+  const qrTitle = document.getElementById('qr-modal-title');
+  const qrNote  = document.getElementById('qr-modal-note');
+
+  const qrContent = {
+    sponsor: {
+      title: '扫码添加微信 — 合作咨询',
+      note:  '添加微信请备注「合作伙伴」，不备注不会通过'
+    },
+    speaker: {
+      title: '扫码添加微信 — 嘉宾申请',
+      note:  '添加微信请备注「嘉宾申请」，不备注不会通过'
+    }
+  };
+
+  function openQrModal(type) {
+    const c = qrContent[type] || qrContent.sponsor;
+    qrTitle.textContent = c.title;
+    qrNote.innerHTML = c.note.replace(/「(.+?)」/, '<strong>「$1」</strong>');
+    qrModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeQrModal(e, force) {
+    if (force || (e && e.target === qrModal)) {
+      qrModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeQrModal(null, true);
+  });
+</script>
+
+</body>
+</html>
