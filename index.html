@@ -54,7 +54,8 @@
   .section-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:34px}.section-title{font-size:clamp(32px,5vw,64px);line-height:1.04;letter-spacing:-.055em;font-weight:950}.section-title span{display:block;color:var(--orange-deep)}.section-sub{max-width:640px;color:var(--ink-2);font-size:18px}.hl{background:linear-gradient(180deg,transparent 52%,rgba(255,217,121,.62) 52%);padding:0 .08em}
 
   .hero{min-height:100vh;padding:142px 22px 72px;position:relative;z-index:1;overflow:hidden}.hero:after{content:"";position:absolute;inset:auto -16% -22% -16%;height:42%;background:linear-gradient(180deg,transparent,#fffdf6 64%);z-index:-1}.orb{position:absolute;border-radius:50%;filter:blur(0);opacity:.7;z-index:-2;animation:float 10s ease-in-out infinite}.orb.one{width:420px;height:420px;left:-120px;top:130px;background:radial-gradient(circle,#fff 0 23%,#ffe7a6 24% 46%,rgba(255,139,71,.28) 47% 70%,transparent 71%)}.orb.two{width:360px;height:360px;right:-80px;top:70px;background:radial-gradient(circle,#fff7d6 0 30%,rgba(255,151,83,.34) 31% 63%,transparent 64%);animation-delay:-3s}.orb.three{width:210px;height:210px;left:52%;bottom:7%;background:radial-gradient(circle,#fff 0 28%,rgba(255,111,97,.24) 29% 65%,transparent 66%);animation-delay:-6s}.hero-grid{max-width:var(--max);margin:auto;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:46px;align-items:center}.hero-kicker{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}.pill{padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid var(--line);font-size:13px;font-weight:800;color:var(--muted);box-shadow:0 10px 28px rgba(232,104,54,.08)}
-  h1{font-size:clamp(72px,13vw,160px);line-height:.82;letter-spacing:-.1em;font-weight:1000;margin:0 0 24px;background:none;color:#5a2d16;text-shadow:0 20px 70px rgba(232,104,54,.16)}
+  h1.hero-title{margin:0 0 22px;line-height:1;background:none;color:#5a2d16;text-shadow:none}
+  .hero-title-img{width:clamp(345px,47vw,660px);height:auto;filter:drop-shadow(0 20px 70px rgba(232,104,54,.16));transform:translateX(-6px)}
   .hero-subtitle{font-size:clamp(28px,4.8vw,62px);line-height:1.08;letter-spacing:-.06em;font-weight:950;margin-bottom:22px}.hero-lead{max-width:700px;color:var(--ink-2);font-size:20px;line-height:1.82;font-weight:600}.hero-lead strong{color:var(--orange-deep)}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 22px;font-weight:900;border:1px solid transparent;transition:.25s ease}.btn:hover{transform:translateY(-2px)}.btn-primary{background:linear-gradient(135deg,#ff8b47,#ffb158);color:#fff;box-shadow:0 16px 38px rgba(255,139,71,.28)}.btn-ghost{background:rgba(255,255,255,.7);border-color:var(--line);color:var(--ink-2)}
   .hero-visual{position:relative}.photo-stack{position:relative;min-height:590px}.hero-card{position:absolute;border-radius:32px;overflow:hidden;border:1px solid rgba(255,255,255,.72);box-shadow:var(--shadow);background:#fff}.hero-card img{width:100%;height:100%;object-fit:cover}.hero-card.main{right:0;top:20px;width:86%;height:390px;transform:rotate(1.5deg)}.hero-card.side{left:0;bottom:54px;width:48%;height:250px;transform:rotate(-5deg)}.hero-card.quote{right:8%;bottom:0;width:55%;padding:24px;background:rgba(255,255,255,.84);backdrop-filter:blur(16px);transform:rotate(2deg)}.quote strong{display:block;font-size:30px;line-height:1.12;letter-spacing:-.04em}.quote p{font-weight:700;color:var(--muted);margin-top:10px}.wave-chip{position:absolute;right:5%;top:0;display:grid;place-items:center;width:112px;height:112px;border-radius:50%;background:linear-gradient(150deg,#fff,#fff3c9);box-shadow:0 14px 40px rgba(232,104,54,.18);font-weight:950;color:var(--orange-deep);transform:rotate(10deg)}.floating-tags{position:absolute;inset:0;pointer-events:none}.tag-float{position:absolute;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.76);box-shadow:0 8px 22px rgba(67,41,18,.08);font-weight:900;color:var(--ink-2);animation:float 8s ease-in-out infinite}.tag-float:nth-child(1){left:2%;top:10%}.tag-float:nth-child(2){right:2%;top:35%;animation-delay:-1.5s}.tag-float:nth-child(3){left:8%;bottom:22%;animation-delay:-3s}.tag-float:nth-child(4){right:14%;bottom:21%;animation-delay:-4.5s}
   .stats-row{max-width:var(--max);margin:42px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{padding:18px 18px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.58);box-shadow:var(--shadow-soft)}.stat b{display:block;font-size:30px;line-height:1;color:var(--orange-deep)}.stat span{display:block;margin-top:8px;color:var(--muted);font-size:14px;font-weight:700}
@@ -73,7 +74,7 @@
 
   @keyframes float{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-18px) rotate(var(--r,0deg))}}
   @media (max-width:980px){.nav-links{display:none}.hero-grid,.episode-grid,.manifest-grid,.rule-box,.join-grid{grid-template-columns:1fr}.hero{padding-top:122px}.hero-visual{order:-1}.photo-stack{min-height:480px}.hero-card.main{width:88%;height:320px}.hero-card.side{height:210px}.stats-row{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.section-sub{margin-top:16px}.masonry{grid-template-columns:1fr 1fr;grid-auto-rows:210px}.future-grid{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:640px){.section{padding:76px 16px}.hero{padding:112px 16px 52px}.brand small{display:none}.brand span{font-size:16px}h1{font-size:82px}.hero-lead{font-size:17px}.hero-grid{gap:22px}.photo-stack{min-height:420px}.hero-card.main{width:100%;height:270px}.hero-card.side{width:48%;height:175px;bottom:62px}.hero-card.quote{right:0;width:68%;padding:18px}.quote strong{font-size:24px}.stats-row,.masonry,.future-grid{grid-template-columns:1fr}.wechat-card,.online-note{display:block}.wechat-card img{margin-bottom:12px}.masonry{grid-auto-rows:240px}.tile.wide{grid-column:auto}.tile.large{grid-row:auto}.manifest-note{display:block}.manifest-note p{margin-top:14px}.timeline-row{grid-template-columns:1fr}.join-card{padding:30px 22px;border-radius:30px}.footer-inner{display:block}.backtop{display:inline-block;margin-top:14px}}
+  @media (max-width:640px){.section{padding:76px 16px}.hero{padding:112px 16px 52px}.brand small{display:none}.brand span{font-size:16px}.hero-title-img{width:min(88vw,460px);transform:translateX(-4px)}.hero-lead{font-size:17px}.hero-grid{gap:22px}.photo-stack{min-height:420px}.hero-card.main{width:100%;height:270px}.hero-card.side{width:48%;height:175px;bottom:62px}.hero-card.quote{right:0;width:68%;padding:18px}.quote strong{font-size:24px}.stats-row,.masonry,.future-grid{grid-template-columns:1fr}.wechat-card,.online-note{display:block}.wechat-card img{margin-bottom:12px}.masonry{grid-auto-rows:240px}.tile.wide{grid-column:auto}.tile.large{grid-row:auto}.manifest-note{display:block}.manifest-note p{margin-top:14px}.timeline-row{grid-template-columns:1fr}.join-card{padding:30px 22px;border-radius:30px}.footer-inner{display:block}.backtop{display:inline-block;margin-top:14px}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -102,8 +103,8 @@
         <div class="hero-kicker">
           <span class="pill">年轻一代</span><span class="pill">AI创造者</span><span class="pill">开放实验室</span>
         </div>
-        <h1>AI<br>造浪者</h1>
-        <div class="hero-subtitle">年轻一代AI创造者的开放实验室</div>
+        <h1 class="hero-title" aria-label="AI造浪者"><img class="hero-title-img" src="assets/logo-title-brown.png" alt="" /></h1>
+        <div class="hero-subtitle">年轻一代AI创造者的<br>开放实验室</div>
         <p class="hero-lead">我们不定义边界，<strong>线下创业沙龙、线上开麦分享、内容共创、资源撮合</strong>——让AI赛道跑起来的创造者们被看见、被连接、拿结果。</p>
         <div class="actions">
           <a class="btn btn-primary" href="#episodes">看我们做过什么</a>
@@ -224,18 +225,19 @@
           <div class="join-grid">
             <div>
               <span class="eyebrow" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.22)">Join the Wave</span>
-              <h2>下一场浪，<br>可以从你开始。</h2>
+              <h2>下一场浪，<br>就从你开始。</h2>
               <p>如果你想做分享、共创内容、推荐嘉宾、提供场地/品牌合作，或者只是想把一个AI赛道的真问题摆上桌面，欢迎加入。</p>
-              <div class="join-actions"><a href="https://xhslink.com/m/3T12hW07d7w" target="_blank" rel="noopener">看自由良渚小红书</a><a href="https://mp.weixin.qq.com/s/8MSabMU3C-Uk_RtLs6d9Vg" target="_blank" rel="noopener">读活动图文回顾</a></div>
+              <div class="join-actions"><a href="#media">看公众号精选</a><a href="https://xhslink.com/m/3T12hW07d7w" target="_blank" rel="noopener">看小红书现场</a></div>
               <div class="wechat-card"><img src="assets/wechat-ai-wavemakers.png" alt="AI造浪者微信二维码" /><div><b>想合作，直接加微信。</b><span>添加时请备注「AI造浪者」；嘉宾推荐、品牌合作、场地支持、内容共创都可以聊。</span></div></div>
             </div>
-            <div class="source-card">
-              <h3>被记录下来的造浪现场</h3>
-              <p>精选几篇活动后的图文和视频，想了解现场氛围可以从这里开始。</p>
-              <a href="https://mp.weixin.qq.com/s/8MSabMU3C-Uk_RtLs6d9Vg" target="_blank" rel="noopener">第一场｜AI博主·创作者破局专场图文回顾<small>从内容起号、爆款方法到商业变现的现场记录</small></a>
-              <a href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" target="_blank" rel="noopener">第二场｜AI出海者专场复盘<small>红人营销、内容冷启动、GEO、SEO 的出海增长地图</small></a>
-              <a href="https://itunes.apple.com/cn/app/id741292507?l=en&mt=8" target="_blank" rel="noopener">小红书视频｜AI造浪者第❶场现场短片<small>用视频看见第一场 AI 博主专场的真实氛围</small></a>
-              <div class="video-card"><video controls preload="metadata" poster="assets/photo-04-first-group.jpg"><source src="assets/ai-wavemakers-ep1-video.mp4" type="video/mp4"></video><div>第一场现场短片 · AI博主专场真实氛围，点击即可播放。</div></div>
+            <div class="source-card" id="media">
+              <h3>公众号复盘 × 小红书现场</h3>
+              <p>活动后复盘、活动前预告和小红书现场内容都放在这里：想看发生过什么，从复盘开始；想看氛围，去小红书。</p>
+              <a href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" target="_blank" rel="noopener">第一场复盘｜群像比独角兽更有力量<small>AI博主专场现场回顾：起号、爆款、AI教学、品牌合作和变现闭环。</small></a>
+              <a href="https://mp.weixin.qq.com/s/5Sb3T793s_6IPeWIe-vu0Q" target="_blank" rel="noopener">第二场复盘｜超级个体 + AI = 全球化公司<small>AI出海·全球化增长专场：达人营销、内容冷启动、GEO、SEO 的实战地图。</small></a>
+              <a href="https://mp.weixin.qq.com/s/o_GKmWf9FXs52yGANTHZpQ" target="_blank" rel="noopener">第二场预告｜同行已经用AI赚美金了<small>活动前的主题缘起、嘉宾阵容和问题清单，适合先了解这场为什么发生。</small></a>
+              <a href="https://xhslink.com/m/3T12hW07d7w" target="_blank" rel="noopener">小红书合集｜图文/视频看现场<small>进「自由良渚」主页看 AI 造浪者合集，含 AI新手村、AI出海0-1 等笔记。</small></a>
+              <div class="video-card" id="media-video"><video controls preload="metadata" poster="assets/photo-04-first-group.jpg"><source src="assets/ai-wavemakers-ep1-video.mp4" type="video/mp4"></video><div>第一场现场短片 · AI博主专场真实氛围，点击即可播放。</div></div>
             </div>
           </div>
         </div>
