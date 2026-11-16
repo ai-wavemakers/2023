@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="AI造浪者——年轻一代AI创造者的开放实验室。线下创业沙龙、线上开麦分享、内容共创、资源撮合，让AI赛道跑起来的创造者们被看见、被连接、拿结果。" />
 <meta property="og:title" content="AI造浪者 · AI Wave Makers" />
-<meta property="og:description" content="年轻一代AI创造者的开放实验室。从AI内容、出海增长，到千问办公实战与FDE企业落地。四期真实现场，连接正在创造的人。" />
+<meta property="og:description" content="年轻一代AI创造者的开放实验室。从AI内容、出海增长，到千问办公实战与FDE企业落地。真实活动现场，连接正在创造的人。" />
 <meta property="og:image" content="https://ai-wavemakers.github.io/2023/assets/ep4-roundtable.jpg" />
 <meta property="og:url" content="https://ai-wavemakers.github.io/2023/" />
 <meta property="og:locale" content="zh_CN" />
@@ -104,6 +104,41 @@ img[src$="ep3-workshop.jpg"]{object-position:50% 35%}
 .film-player video:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;object-fit:contain}
 .film-player video:-webkit-full-screen{width:100vw;height:100vh;object-fit:contain}
 .films .section-title span{color:#c45227}
+
+/* Retain original event assets and give every event equal, visible space. */
+.hero-card.side{width:58%;height:205px;bottom:0;left:-15px}
+.hero-card.side img{object-fit:cover;object-position:center}
+.hero-card.quote{width:49%;right:-6px;padding:21px}
+.quote strong{font-size:25px}
+.stat b{font-size:26px}
+.timeline{margin-top:32px;box-shadow:none;padding:12px 26px}
+.timeline-row{grid-template-columns:55px minmax(0,1fr);padding:20px 0}
+.timeline-row h4{font-size:21px}.timeline-row p{font-size:14px;line-height:1.85}
+.time-no{font-size:25px;color:#a54b26}
+.gallery-event+.gallery-event{margin-top:50px}
+.gallery-event-heading{display:flex;justify-content:space-between;gap:26px;align-items:end;margin-bottom:20px}
+.gallery-event-heading>div{max-width:790px}.gallery-event-heading>div>span{font-size:12px;color:#a54b26;font-weight:800}
+.gallery-event-heading h3{font-size:28px;line-height:1.4;margin:7px 0;letter-spacing:-.035em}
+.gallery-event-heading p{font-size:14px;color:var(--ink-2);line-height:1.85}
+.gallery-event-heading .text-link{white-space:nowrap;flex-shrink:0;margin-bottom:4px;font-size:13px}
+.event-photos{display:grid;gap:16px}.gallery-pair{grid-template-columns:1.3fr 1fr}.gallery-trio{grid-template-columns:repeat(3,minmax(0,1fr))}
+.event-photos .tile{height:370px}.event-photos .tile img{object-position:50% 46%}
+.gallery-pair .portrait img{object-position:50% 58%}
+.gallery-trio .tile{height:300px}.gallery-trio .tile img{object-position:center}
+.gallery-event:last-child .gallery-pair{grid-template-columns:1fr 1fr}.gallery-event:last-child .tile{height:480px}
+.original-film{grid-column:1/-1;grid-template-columns:minmax(200px,280px) minmax(0,1fr);gap:42px;padding:28px}
+.original-film .film-player video{aspect-ratio:9/16;object-fit:contain}
+.original-film .film-caption{max-width:610px}.original-film h3{font-size:36px}.original-film p{font-size:16px;line-height:1.95}
+.reading-card.reading-text{display:block}.reading-card.reading-text>div{padding:28px 30px}
+.rule-box{display:grid}
+@media(max-width:980px){.hero-card.side{width:62%;height:180px;left:-5px}.hero-card.quote{width:54%;right:-4px;padding:17px}.quote strong{font-size:23px}.stat b{font-size:22px}.gallery-event-heading{display:block}.gallery-event-heading .text-link{margin-top:14px}.gallery-pair{grid-template-columns:1.2fr 1fr}.event-photos .tile{height:320px}.gallery-trio{grid-template-columns:1fr 1fr}.gallery-trio .tile:first-child{grid-column:1/-1;height:320px}.original-film{grid-template-columns:minmax(180px,235px) minmax(0,1fr);gap:28px}.original-film h3{font-size:31px}.gallery-event:last-child .tile{height:390px}}
+@media(max-width:640px){.hero-card.side{width:62%;height:150px;bottom:0;left:0}.hero-card.quote{width:52%;right:0;bottom:0;padding:14px}.quote strong{font-size:21px}.quote p{font-size:10px}.stat b{font-size:23px}.timeline{padding:6px 19px}.timeline-row{grid-template-columns:30px minmax(0,1fr);gap:12px}.timeline-row h4{font-size:19px}.timeline-row p{font-size:13px}.time-no{font-size:22px}.gallery-event+.gallery-event{margin-top:36px}.gallery-event-heading h3{font-size:24px}.gallery-event-heading p{font-size:13px}.event-photos{gap:13px}.gallery-pair,.gallery-trio,.gallery-event:last-child .gallery-pair{grid-template-columns:1fr}.event-photos .tile,.gallery-trio .tile,.gallery-trio .tile:first-child{height:270px;grid-column:auto}.event-photos .portrait{height:420px}.gallery-event:last-child .tile{height:440px}.original-film{grid-template-columns:42% minmax(0,1fr);gap:16px;padding:15px}.original-film h3{font-size:23px}.original-film p{font-size:12px;line-height:1.8}.reading-card.reading-text>div{padding:25px}.rule-box{grid-template-columns:1fr}.rule{padding:23px}.rule h3{font-size:23px}.rule li{font-size:13px}}
+@media(max-width:360px){.original-film{grid-template-columns:1fr}.original-film .film-player{max-width:220px}}
+
+/* Leave the whole group photo unobstructed. */
+.hero-card.quote{width:37%;right:0;padding:15px}.hero-card.quote .quote strong{font-size:23px}.hero-card.quote .quote p{font-size:11px}
+@media(max-width:980px){.hero-card.quote{width:37%;padding:12px}.hero-card.quote .quote strong{font-size:20px}.hero-card.quote .quote p{font-size:10px}}
+@media(max-width:640px){.hero-card.quote{width:37%;padding:10px}.hero-card.quote .quote strong{font-size:19px;line-height:1.35}.hero-card.quote .quote p{font-size:9px;line-height:1.7}}
 </style>
 </head>
 <body id="top">
@@ -117,7 +152,7 @@ img[src$="ep3-workshop.jpg"]{object-position:50% 35%}
       </a>
       <div class="nav-links">
         <a href="#lab">开放实验室</a>
-        <a href="#episodes">四期专场</a>
+        <a href="#episodes">主题专场</a>
         <a href="#gallery">精选现场</a>
         <a href="#media">内容精选</a>
         <a class="nav-cta" href="#join">合作 / 上台</a>
@@ -143,19 +178,19 @@ img[src$="ep3-workshop.jpg"]{object-position:50% 35%}
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="photo-stack">
-          <div class="wave-chip">已经造浪<br><b>四期</b></div>
+
           <div class="hero-card main"><img src="assets/ep4-roundtable.jpg" alt="第四期FDE专场，嘉宾与满场观众面对面交流" fetchpriority="high" width="1800" height="1349" /></div>
-          <div class="hero-card side"><img src="assets/ep3-creators.jpg" alt="第三期千问办公专场三位分享嘉宾" width="1200" height="1800" /></div>
+          <div class="hero-card side"><img src="assets/photo-04-first-group.jpg" alt="第一期AI博主与创作者专场全场大合照" width="1800" height="1200" /></div>
           <div class="hero-card quote"><div class="quote"><strong>不讲趋势，<br>只讲真东西。</strong><p>从一个人的创造，到一群人的实践。</p></div></div>
           <div class="floating-tags"><span class="tag-float">超级个体</span><span class="tag-float">超级组织</span><span class="tag-float">内容共创</span><span class="tag-float">资源撮合</span></div>
         </div>
       </div>
     </div>
-    <div class="stats-row" role="group" aria-label="AI造浪者活动进展">
-      <div class="stat"><b>04</b><span>已完成主题专场</span></div>
-      <div class="stat"><b>近30人</b><span>第三期现场同时动手创造</span></div>
-      <div class="stat"><b>1小时</b><span>千问办公专场实战环节</span></div>
-      <div class="stat"><b>杭州</b><span>让AI创造者面对面连接</span></div>
+    <div class="stats-row" role="group" aria-label="AI造浪者的连接方式">
+      <div class="stat"><b>实战分享</b><span>一线创造者，讲真实路径</span></div>
+      <div class="stat"><b>内容共创</b><span>让一次分享留下更多价值</span></div>
+      <div class="stat"><b>资源撮合</b><span>连接创作者、产品与业务</span></div>
+      <div class="stat"><b>面对面</b><span>从现场认识，到下一次合作</span></div>
     </div>
   </header>
 
@@ -179,64 +214,62 @@ img[src$="ep3-workshop.jpg"]{object-position:50% 35%}
     <section class="section episodes" id="episodes">
       <div class="wrap">
         <div class="section-head">
-          <div><span class="eyebrow">Already Made</span><h2 class="section-title">四期现场，<span>把AI创造往前推进。</span></h2></div>
+          <div><span class="eyebrow">Already Made</span><h2 class="section-title">每一场，<span>都聚焦一个真问题。</span></h2></div>
           <p class="section-sub">从AI博主的内容与商业化，到产品的全球增长；从文科生动手做产品，到FDE走进真实企业。每一期，都把话题落到具体的人和事。</p>
         </div>
         <div class="episode-grid">
-          <article class="episode new-episode">
-            <div class="episode-img"><img src="assets/ep4-roundtable.jpg" alt="第四期FDE专场圆桌，四位嘉宾与荷妮共同交流" loading="lazy" width="1800" height="1349" /><span class="episode-badge">第④期 · 2026.08.30</span></div>
-            <div class="episode-body">
-              <div class="event-context">自由良渚三周年特别版</div>
-              <h3>FDE × AI高倍增长<br>实战专场</h3>
-              <div class="episode-meta"><span>杭州 · 中国良渚数字文化社区</span><span>企业AI落地</span><span>创业增长</span></div>
-              <p>四位嘉宾把不同的创业路径带到现场：企业AI服务如何获客和交付，AI产品如何拿下真实订单，内容如何长成业务，以及一人开发如何走进产业场景。</p>
-              <div class="speaker-list" role="group" aria-label="第四期嘉宾"><span>曲率出逃</span><span>张晨曦 Nature</span><span>彬彬AI说</span><span>张三</span><span>荷妮主持</span></div>
-              <div class="topic-line">从第一个客户，到可持续的交付和增长。</div>
-              <a class="text-link" href="https://xhslink.cn/o/82hCXp6F3qC" target="_blank" rel="noopener noreferrer">看第四期现场图集 <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-          <article class="episode new-episode">
-            <div class="episode-img"><img src="assets/ep3-workshop.jpg" alt="第三期千问办公工作坊，参与者打开电脑动手制作产品" loading="lazy" width="1800" height="1313" /><span class="episode-badge">第③期 · 2026.08.15</span></div>
-            <div class="episode-body">
-              <div class="event-context">与千问办公共同落地</div>
-              <h3>千问办公<br>AI Workshop专场</h3>
-              <div class="episode-meta"><span>杭州 · 硒和·云创</span><span>Vibe coding</span><span>现场实战</span></div>
-              <p>三位英语专业出身的创造者，分享从自身需求出发做AI产品的路径。分享之后，近30人同时打开电脑，在一小时实战中制作自己的工具，再上台展示。</p>
-              <div class="speaker-list" role="group" aria-label="第三期嘉宾"><span>荷妮</span><span>Leila</span><span>Ceci</span></div>
-              <div class="topic-line">听完就动手，把“我想做一个……”变成作品。</div>
-              <a class="text-link" href="https://mp.weixin.qq.com/s/JS1IdHc5GNM5f25EXsGSNw" target="_blank" rel="noopener noreferrer">阅读第三期完整回顾 <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-
-          <article class="episode archive-episode">
-            <div class="episode-img"><img loading="lazy" decoding="async" src="assets/photo-04-first-group.jpg" alt="AI造浪者第一期 AI博主专场合影" width="1800" height="1200" /><span class="episode-badge">EP.01 · 2026.05.24</span></div>
-            <div class="episode-body">
-              <h3>AI博主 · 创作者破局专场</h3>
-              <div class="episode-meta"><span>杭州 · 云谷中心</span><span>内容破局</span><span>AI一人公司</span></div>
-              <p>8位AI博主一日硬核分享：从起号、爆款、AI教学、影视级AIGC创作，到品牌合作与变现闭环，只讲自己跑过的真实路径。</p>
-              <div class="speaker-list" role="group" aria-label="第一期嘉宾名单"><span>第四种黑猩猩</span><span>AI张同学</span><span>西门聪明蛋</span><span>麦当mdldm</span><span>AI圆桌派-宣宣</span><span>王小橙快跑</span><span>朱想想</span><span>孙不卷AI</span></div>
-              <div class="topic-line">关键词：真实收入 · 起号方法论 · 商单合作 · 超级个体 · 内容变现</div>
-              <a class="text-link" href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" target="_blank" rel="noopener noreferrer">阅读第一期复盘 <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-          <article class="episode archive-episode">
-            <div class="episode-img"><img loading="lazy" decoding="async" src="assets/photo-05-second-stage.jpg" alt="AI造浪者第二期 AI出海专场现场" width="1800" height="1010" /><span class="episode-badge">EP.02 · 2026.06.28</span></div>
-            <div class="episode-body">
-              <h3>AI出海者专场</h3>
-              <div class="episode-meta"><span>杭州 · 拱墅智慧谷</span><span>全球化增长</span><span>圆桌对话</span></div>
-              <p>用一场下午拼出AI出海增长地图：红人营销、海外内容冷启动、GEO新流量、SEO增长体系，以及“从0到1怎么做”的圆桌拆解。</p>
-              <div class="speaker-list" role="group" aria-label="第二期嘉宾名单"><span>沈扬 Iceman</span><span>Nicole辰</span><span>Summy · 万悉科技</span><span>子木</span><span>荷妮主持</span></div>
-              <div class="topic-line">关键词：海外达人营销 · Twitter冷启动 · GEO · SEO · Agent Skills · 利基市场</div>
-              <a class="text-link" href="https://mp.weixin.qq.com/s/5Sb3T793s_6IPeWIe-vu0Q" target="_blank" rel="noopener noreferrer">阅读第二期复盘 <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-        </div>
-        <div class="journey" role="group" aria-label="四期主题发展路径">
-          <div><span>5月 · 第一期</span><b>内容与商业化</b></div><i aria-hidden="true">↗</i>
-          <div><span>6月 · 第二期</span><b>出海与全球增长</b></div><i aria-hidden="true">↗</i>
-          <div><span>8月 · 第三期</span><b>动手做出产品</b></div><i aria-hidden="true">↗</i>
-          <div><span>8月 · 第四期</span><b>企业落地与交付</b></div>
-        </div>
+<article class="episode" id="event-1">
+<div class="episode-img"><img alt="第一期AI博主与创作者破局专场，台上分享与全场观众" decoding="async" height="1200" loading="lazy" src="assets/photo-01-first-stage.jpg" width="1800"/><span class="episode-badge">EP.01 · 2026.05.24</span></div>
+<div class="episode-body">
+<h3>AI博主 · 创作者破局专场</h3>
+<div class="episode-meta"><span>杭州 · 云谷中心</span><span>内容破局</span><span>AI一人公司</span></div>
+<p>8位AI博主一日硬核分享：从起号、爆款、AI教学、影视级AIGC创作，到品牌合作与变现闭环，只讲自己跑过的真实路径。</p>
+<div aria-label="第一期嘉宾名单" class="speaker-list" role="group"><span>第四种黑猩猩</span><span>AI张同学</span><span>西门聪明蛋</span><span>麦当mdldm</span><span>AI圆桌派-宣宣</span><span>王小橙快跑</span><span>朱想想</span><span>孙不卷AI</span></div>
+<div class="topic-line">关键词：真实收入 · 起号方法论 · 商单合作 · 超级个体 · 内容变现</div>
+<a class="text-link" href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" rel="noopener noreferrer" target="_blank">阅读第一期复盘 <span aria-hidden="true">↗</span></a>
+</div>
+</article>
+<article class="episode" id="event-2">
+<div class="episode-img"><img alt="AI造浪者第二期 AI出海专场现场" decoding="async" height="1010" loading="lazy" src="assets/photo-05-second-stage.jpg" width="1800"/><span class="episode-badge">EP.02 · 2026.06.28</span></div>
+<div class="episode-body">
+<h3>AI出海 · 全球化增长专场</h3>
+<div class="episode-meta"><span>杭州 · 拱墅智慧谷</span><span>全球化增长</span><span>圆桌对话</span></div>
+<p>用一场下午拼出AI出海增长地图：红人营销、海外内容冷启动、GEO新流量、SEO增长体系，以及“从0到1怎么做”的圆桌拆解。</p>
+<div aria-label="第二期嘉宾名单" class="speaker-list" role="group"><span>沈扬 Iceman</span><span>Nicole辰</span><span>Summy · 万悉科技</span><span>子木</span><span>荷妮主持</span></div>
+<div class="topic-line">关键词：海外达人营销 · Twitter冷启动 · GEO · SEO · Agent Skills · 利基市场</div>
+<a class="text-link" href="https://mp.weixin.qq.com/s/5Sb3T793s_6IPeWIe-vu0Q" rel="noopener noreferrer" target="_blank">阅读第二期复盘 <span aria-hidden="true">↗</span></a>
+</div>
+</article>
+<article class="episode" id="event-3">
+<div class="episode-img"><img alt="第三期千问办公专场，荷妮、Leila、Ceci三位嘉宾同台" height="1800" loading="lazy" src="assets/ep3-creators.jpg" style="object-position:50% 52%" width="1200"/><span class="episode-badge">第③期 · 2026.08.15</span></div>
+<div class="episode-body">
+<div class="event-context">与千问办公共同落地</div>
+<h3>千问办公<br/>AI Workshop专场</h3>
+<div class="episode-meta"><span>杭州 · 硒和·云创</span><span>Vibe coding</span><span>现场实战</span></div>
+<p>三位英语专业出身的创造者，分享从自身需求出发做AI产品的路径。分享之后，近30人同时打开电脑，在一小时实战中制作自己的工具，再上台展示。</p>
+<div aria-label="第三期嘉宾" class="speaker-list" role="group"><span>荷妮</span><span>Leila</span><span>Ceci</span></div>
+<div class="topic-line">听完就动手，把“我想做一个……”变成作品。</div>
+<a class="text-link" href="https://mp.weixin.qq.com/s/JS1IdHc5GNM5f25EXsGSNw" rel="noopener noreferrer" target="_blank">阅读第三期完整回顾 <span aria-hidden="true">↗</span></a>
+</div>
+</article>
+<article class="episode" id="event-4">
+<div class="episode-img"><img alt="第四期FDE实战专场，观众起身提问与交流" height="1800" loading="lazy" src="assets/ep4-question.jpg" style="object-position:50% 43%" width="1200"/><span class="episode-badge">第④期 · 2026.08.30</span></div>
+<div class="episode-body">
+<div class="event-context">自由良渚三周年特别版</div>
+<h3>FDE × AI高倍增长<br/>实战专场</h3>
+<div class="episode-meta"><span>杭州 · 中国良渚数字文化社区</span><span>企业AI落地</span><span>创业增长</span></div>
+<p>四位嘉宾把不同的创业路径带到现场：企业AI服务如何获客和交付，AI产品如何拿下真实订单，内容如何长成业务，以及一人开发如何走进产业场景。</p>
+<div aria-label="第四期嘉宾" class="speaker-list" role="group"><span>曲率出逃</span><span>张晨曦 Nature</span><span>彬彬AI说</span><span>张三</span><span>荷妮主持</span></div>
+<div class="topic-line">从第一个客户，到可持续的交付和增长。</div>
+<a class="text-link" href="https://xhslink.cn/o/82hCXp6F3qC" rel="noopener noreferrer" target="_blank">看第四期现场图集 <span aria-hidden="true">↗</span></a>
+</div>
+</article>
+</div>
+        <div class="timeline">
+<div class="timeline-row"><div class="time-no">01</div><div><h4>从“内容破局”到“出海增长”</h4><p>第一期回答“AI创造者如何被看见并变现”，第二期回答“AI产品如何找到全球用户”。</p></div></div>
+<div class="timeline-row"><div class="time-no">02</div><div><h4>从单场活动到连续实验室</h4><p>线下场只是入口，后续会延展为访谈、线上夜聊、内容共创和资源撮合。</p></div></div>
+<div class="timeline-row"><div class="time-no">03</div><div><h4>从大咖崇拜到实战者网络</h4><p>我们更看重真实数据、独特方法论和已经跑出来的结果，而不是空泛头衔。</p></div></div>
+</div>
         <div class="deep-dives">
           <article class="deep-dive">
             <div class="deep-heading"><span class="eyebrow">第三期 · 动手创造</span><h3>作品，比“听懂了”<br>更有说服力。</h3><p>先找到自己的真需求，再让AI参与创造。现场出现了这些具体的尝试：</p></div>
@@ -258,39 +291,30 @@ img[src$="ep3-workshop.jpg"]{object-position:50% 35%}
           <div><span class="eyebrow">Field Notes</span><h2 class="section-title">到现场，听真话，<span>也遇到同路人。</span></h2></div>
           <p class="section-sub">看台上的实战分享，也看台下的认真提问、动手调试与面对面交流。照片来自真实活动现场。</p>
         </div>
-        <div class="masonry">
-          <figure class="tile large"><button type="button" class="photo-open" aria-label="查看大图：曲率出逃讲解FDE企业AI落地的专业方法"><img src="assets/ep4-qulv.jpg" alt="曲率出逃讲解FDE企业AI落地的专业方法" loading="lazy" width="1200" height="1800" /></button><figcaption>曲率出逃 · FDE实战<small>商业诊断、企业需求与交付方法</small></figcaption></figure>
-          <figure class="tile"><button type="button" class="photo-open" aria-label="查看大图：荷妮、Leila、Ceci在千问办公专场同台"><img src="assets/ep3-creators.jpg" alt="荷妮、Leila、Ceci在千问办公专场同台" loading="lazy" width="1200" height="1800" /></button><figcaption>三位文科生，三条创造路径<small>千问办公专场 · 荷妮 / Leila / Ceci</small></figcaption></figure>
-          <figure class="tile"><button type="button" class="photo-open" aria-label="查看大图：第四期活动观众起身向嘉宾提问"><img src="assets/ep4-question.jpg" alt="第四期活动观众起身向嘉宾提问" loading="lazy" width="1200" height="1800" /></button><figcaption>把问题问到具体处<small>现场提问，不停在概念里</small></figcaption></figure>
-          <figure class="tile wide"><button type="button" class="photo-open" aria-label="查看大图：千问办公实战环节的参与者与电脑"><img src="assets/ep3-workshop.jpg" alt="千问办公实战环节的参与者与电脑" loading="lazy" width="1800" height="1313" /></button><figcaption>从“听分享”到“我也做一个”<small>近30人同时动手，完成自己的第一次尝试</small></figcaption></figure>
-          <figure class="tile"><button type="button" class="photo-open" aria-label="查看大图：张晨曦Nature在第四期活动中分享"><img src="assets/ep4-nature.jpg" alt="张晨曦Nature在第四期活动中分享" loading="lazy" width="1200" height="1800" /></button><figcaption>从产品到真实企业<small>张晨曦 Nature · 智能协作与企业场景</small></figcaption></figure>
-          <figure class="tile wide"><button type="button" class="photo-open" aria-label="查看大图：第二期AI出海圆桌对话"><img src="assets/photo-07-second-roundtable.jpg" alt="第二期AI出海圆桌对话" loading="lazy" width="1800" height="1200" /></button><figcaption>把出海增长的方法拼在一起<small>第二期 · 红人营销 / 内容冷启动 / GEO / SEO</small></figcaption></figure>
-          <figure class="tile"><button type="button" class="photo-open" aria-label="查看大图：第三期参与者展示自己制作的AI工具"><img src="assets/ep3-demo.jpg" alt="第三期参与者展示自己制作的AI工具" loading="lazy" width="1352" height="1800" /></button><figcaption>第一次做出来，第一次站上台<small>千问办公专场 · 现场作品展示</small></figcaption></figure>
-          <figure class="tile"><button type="button" class="photo-open" aria-label="查看大图：第一期AI博主创作者专场合影"><img src="assets/photo-04-first-group.jpg" alt="第一期AI博主创作者专场合影" loading="lazy" width="1800" height="1200" /></button><figcaption>一切，从这群创造者开始<small>第一期 · AI博主与创作者破局</small></figcaption></figure>
-        </div>
-        <div class="gallery-links"><a class="text-link" href="https://xhslink.cn/o/82hCXp6F3qC" target="_blank" rel="noopener noreferrer">看小红书完整现场图集 <span aria-hidden="true">↗</span></a><span>自由良渚AI实验室 · 第四期精选</span></div>
+<div class="gallery-event"><div class="gallery-event-heading"><div><span>第一期 · 现场精选</span><h3>AI博主 · 创作者破局专场</h3><p>从内容起号到商业变现，听实战者讲透。访谈、课程、内容共创和合作机会，在现场接上。</p></div><a class="text-link" href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" target="_blank" rel="noopener noreferrer">阅读本场回顾 <span aria-hidden="true">↗</span></a></div><div class="event-photos gallery-pair"><figure class="tile landscape"><button type="button" class="photo-open" aria-label="查看大图：第一期观众认真听取嘉宾分享"><img src="assets/photo-02-first-audience.jpg" alt="第一期观众认真听取嘉宾分享" loading="lazy" width="1800" height="1200" /></button><figcaption>第一期 · AI博主专场<small>从内容起号到商业变现，听实战者讲透</small></figcaption></figure><figure class="tile portrait"><button type="button" class="photo-open" aria-label="查看大图：第一期参与者在现场面对面交流"><img src="assets/photo-03-first-network.jpg" alt="第一期参与者在现场面对面交流" loading="lazy" width="1800" height="2700" /></button><figcaption>现场交流<small>访谈、课程、内容共创和合作机会在这里接上</small></figcaption></figure></div></div>
+<div class="gallery-event"><div class="gallery-event-heading"><div><span>第二期 · 现场精选</span><h3>AI出海 · 全球化增长专场</h3><p>红人营销、海外内容冷启动、GEO、SEO，以及AI出海从0到1怎么做。</p></div><a class="text-link" href="https://mp.weixin.qq.com/s/5Sb3T793s_6IPeWIe-vu0Q" target="_blank" rel="noopener noreferrer">阅读本场回顾 <span aria-hidden="true">↗</span></a></div><div class="event-photos gallery-trio"><figure class="tile landscape"><button type="button" class="photo-open" aria-label="查看大图：第二期AI出海专场观众听取实战分享"><img src="assets/photo-06-second-audience.jpg" alt="第二期AI出海专场观众听取实战分享" loading="lazy" width="1800" height="1200" /></button><figcaption>AI出海 · 全球化增长<small>面向产品、增长与出海操盘手</small></figcaption></figure><figure class="tile landscape"><button type="button" class="photo-open" aria-label="查看大图：第二期AI出海0到1圆桌对话"><img src="assets/photo-07-second-roundtable.jpg" alt="第二期AI出海0到1圆桌对话" loading="lazy" width="1800" height="1200" /></button><figcaption>圆桌对话：AI出海0-1怎么做<small>红人营销 / 内容冷启动 / GEO / SEO 拼成增长地图</small></figcaption></figure><figure class="tile landscape"><button type="button" class="photo-open" aria-label="查看大图：第二期AI出海圆桌嘉宾面对面讨论"><img src="assets/photo-08-second-closeup.jpg" alt="第二期AI出海圆桌嘉宾面对面讨论" loading="lazy" width="1800" height="1440" /></button><figcaption>把问题问到细处<small>从“先做什么”聊到“如何判断继续还是放弃”</small></figcaption></figure></div></div>
+<div class="gallery-event"><div class="gallery-event-heading"><div><span>第三期 · 现场精选</span><h3>千问办公 · AI Workshop专场</h3><p>从“听分享”到“我也做一个”：动手调试，把自己的作品带到台前。</p></div><a class="text-link" href="https://mp.weixin.qq.com/s/JS1IdHc5GNM5f25EXsGSNw" target="_blank" rel="noopener noreferrer">阅读本场回顾 <span aria-hidden="true">↗</span></a></div><div class="event-photos gallery-pair"><figure class="tile landscape"><button type="button" class="photo-open" aria-label="查看大图：第三期工作坊参与者打开电脑动手制作工具"><img src="assets/ep3-workshop.jpg" alt="第三期工作坊参与者打开电脑动手制作工具" loading="lazy" width="1800" height="1313" /></button><figcaption>从想法到自己的工具<small>近30人同时动手，在实战中开始第一次尝试</small></figcaption></figure><figure class="tile portrait"><button type="button" class="photo-open" aria-label="查看大图：第三期参与者站上台展示自己制作的AI工具"><img src="assets/ep3-demo.jpg" alt="第三期参与者站上台展示自己制作的AI工具" loading="lazy" width="1352" height="1800" /></button><figcaption>第一次做出来，第一次站上台<small>千问办公专场 · 现场作品展示</small></figcaption></figure></div></div>
+<div class="gallery-event"><div class="gallery-event-heading"><div><span>第四期 · 现场精选</span><h3>FDE × AI高倍增长实战专场</h3><p>从商业诊断、企业需求，到工程交付与产品增长，把方法和问题一起摊开讲。</p></div><a class="text-link" href="https://xhslink.cn/o/82hCXp6F3qC" target="_blank" rel="noopener noreferrer">阅读本场回顾 <span aria-hidden="true">↗</span></a></div><div class="event-photos gallery-pair"><figure class="tile portrait"><button type="button" class="photo-open" aria-label="查看大图：曲率出逃在第四期讲解FDE企业服务方法"><img src="assets/ep4-qulv.jpg" alt="曲率出逃在第四期讲解FDE企业服务方法" loading="lazy" width="1200" height="1800" /></button><figcaption>曲率出逃 · FDE实战<small>商业诊断、企业需求与交付方法</small></figcaption></figure><figure class="tile portrait"><button type="button" class="photo-open" aria-label="查看大图：张晨曦Nature在第四期分享智能协作与企业项目"><img src="assets/ep4-nature.jpg" alt="张晨曦Nature在第四期分享智能协作与企业项目" loading="lazy" width="1200" height="1800" /></button><figcaption>从产品到真实企业<small>张晨曦 Nature · 智能协作与企业场景</small></figcaption></figure></div></div>
       </div>
     </section>
 
     <section class="section films" id="films">
       <div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">现场短片</span><h2 class="section-title">把现场，<span>带到你面前。</span></h2></div><p class="section-sub">台上拆方法，台下认真讨论；打开电脑动手，再展示自己的作品。两段真实现场画面精选，点击播放。</p></div>
+        <div class="section-head"><div><span class="eyebrow">现场短片</span><h2 class="section-title">把现场，<span>带到你面前。</span></h2></div><p class="section-sub">台上拆方法，台下认真讨论；打开电脑动手，再展示自己的作品。保留最初的精彩，也记录后来的实践。点击播放，回到真实现场。</p></div>
         <div class="film-grid">
-          <article class="film"><div class="film-player"><video controls muted playsinline preload="none" poster="assets/ep4-video-poster.jpg" aria-label="第四期曲率出逃FDE专业分享现场画面精选"><source src="assets/ep4-fde-highlight.mp4" type="video/mp4" />你的浏览器暂不支持视频，可从下方小红书查看现场。</video></div><div class="film-caption"><span>第④期 · 曲率出逃</span><h3>企业AI落地，<br>在现场拆开讲。</h3><p>专业分享、方法拆解与企业案例。28秒现场画面精选，无原声。</p><a class="text-link" href="https://xhslink.cn/o/82hCXp6F3qC" target="_blank" rel="noopener noreferrer">看这一场的完整图集 <span aria-hidden="true">↗</span></a></div></article>
-          <article class="film"><div class="film-player"><video controls muted playsinline preload="none" poster="assets/ep3-video-poster.jpg" aria-label="第三期千问办公工作坊现场画面精选"><source src="assets/ep3-workshop-highlight.mp4" type="video/mp4" />你的浏览器暂不支持视频，可阅读下方活动回顾。</video></div><div class="film-caption"><span>第③期 · 千问办公实战</span><h3>从一句想法，<br>到屏幕上的作品。</h3><p>分享之后，打开电脑，一起调试，把自己做的工具展示出来。26秒现场画面精选，无原声。</p><a class="text-link" href="https://mp.weixin.qq.com/s/JS1IdHc5GNM5f25EXsGSNw" target="_blank" rel="noopener noreferrer">看这一场的完整回顾 <span aria-hidden="true">↗</span></a></div></article>
-        </div>
+<article class="film original-film" id="media-video"><div class="film-player"><video aria-label="第一期AI博主与创作者破局专场原版现场视频" controls="" playsinline="" poster="assets/ep1-video-poster.jpg" preload="none"><source src="assets/ai-wavemakers-ep1-video.mp4" type="video/mp4"/>你的浏览器暂不支持视频，可阅读第一期复盘。</video></div><div class="film-caption"><span>第一期 · AI博主与创作者破局</span><h3>不讲虚的，<br/>只讲真东西。</h3><p>第一场现场短片 · AI博主专场真实氛围，点击即可播放。从内容起号、AI创作，到品牌合作与变现闭环，听实战者讲自己走过的路。</p><a class="text-link" href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" rel="noopener noreferrer" target="_blank">阅读第一期完整复盘 <span aria-hidden="true">↗</span></a></div></article>
+<article class="film"><div class="film-player"><video aria-label="第三期千问办公工作坊现场画面精选" controls="" muted="" playsinline="" poster="assets/ep3-video-poster-v2.jpg" preload="none"><source src="assets/ep3-workshop-highlight.mp4" type="video/mp4"/>你的浏览器暂不支持视频，可阅读下方活动回顾。</video></div><div class="film-caption"><span>第③期 · 千问办公实战</span><h3>从一句想法，<br/>到屏幕上的作品。</h3><p>分享之后，打开电脑，一起调试，把自己做的工具展示出来。26秒现场画面精选，无原声。</p><a class="text-link" href="https://mp.weixin.qq.com/s/JS1IdHc5GNM5f25EXsGSNw" rel="noopener noreferrer" target="_blank">看这一场的完整回顾 <span aria-hidden="true">↗</span></a></div></article>
+<article class="film"><div class="film-player"><video aria-label="第四期曲率出逃FDE专业分享现场画面精选" controls="" muted="" playsinline="" poster="assets/ep4-video-poster.jpg" preload="none"><source src="assets/ep4-fde-highlight.mp4" type="video/mp4"/>你的浏览器暂不支持视频，可从下方小红书查看现场。</video></div><div class="film-caption"><span>第④期 · 曲率出逃</span><h3>企业AI落地，<br/>在现场拆开讲。</h3><p>专业分享、方法拆解与企业案例。28秒现场画面精选，无原声。</p><a class="text-link" href="https://xhslink.cn/o/82hCXp6F3qC" rel="noopener noreferrer" target="_blank">看这一场的完整图集 <span aria-hidden="true">↗</span></a></div></article>
+</div>
       </div>
     </section>
     <section class="section reading" id="media">
       <div class="wrap">
         <div class="section-head"><div><span class="eyebrow">内容精选</span><h2 class="section-title">不止在场，<span>也把经验留下。</span></h2></div><p class="section-sub">想看我们真正做过什么，从回顾开始；想了解嘉宾的实践路径，再看专场介绍。</p></div>
-        <div class="reading-grid">
-          <a class="reading-card" href="https://mp.weixin.qq.com/s/JS1IdHc5GNM5f25EXsGSNw" target="_blank" rel="noopener noreferrer"><img src="assets/ep3-creators.jpg" alt="第三期千问办公三位分享嘉宾" loading="lazy" width="1200" height="1800" /><div><span class="reading-kind">第三期回顾 · 公众号</span><h3>一小时，一群创造者做出了自己的AI工具</h3><p>三个英语专业出身的分享者，近30人的动手实践。看看这场工作坊里真正发生了什么。</p><b>阅读回顾 ↗</b></div></a>
-          <a class="reading-card" href="https://xhslink.cn/o/82hCXp6F3qC" target="_blank" rel="noopener noreferrer"><img src="assets/ep4-roundtable.jpg" alt="第四期FDE专场圆桌现场" loading="lazy" width="1800" height="1349" /><div><span class="reading-kind">第四期现场 · 小红书</span><h3>自由良渚三周年，把FDE与AI创业放在一起聊</h3><p>四位嘉宾的专业分享、圆桌与观众互动。18张精选现场图，回到这一场造浪现场。</p><b>打开现场图集 ↗</b></div></a>
-        </div>
+        <div class="reading-grid"><a class="reading-card reading-text" href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" target="_blank" rel="noopener noreferrer"><div><span class="reading-kind">第一期复盘 · 公众号</span><h3>群像比独角兽更有力量</h3><p>AI博主专场现场回顾：起号、爆款、AI教学、品牌合作和变现闭环。</p><b>阅读复盘 ↗</b></div></a><a class="reading-card reading-text" href="https://mp.weixin.qq.com/s/5Sb3T793s_6IPeWIe-vu0Q" target="_blank" rel="noopener noreferrer"><div><span class="reading-kind">第二期复盘 · 公众号</span><h3>超级个体 + AI = 全球化公司</h3><p>AI出海 · 全球化增长专场：达人营销、内容冷启动、GEO、SEO的实战地图。</p><b>阅读复盘 ↗</b></div></a><a class="reading-card reading-text" href="https://mp.weixin.qq.com/s/JS1IdHc5GNM5f25EXsGSNw" target="_blank" rel="noopener noreferrer"><div><span class="reading-kind">第三期回顾 · 公众号</span><h3>一小时，一群创造者做出了自己的AI工具</h3><p>三个英语专业出身的分享者，近30人的动手实践。看看这场工作坊里真正发生了什么。</p><b>阅读回顾 ↗</b></div></a><a class="reading-card reading-text" href="https://xhslink.cn/o/82hCXp6F3qC" target="_blank" rel="noopener noreferrer"><div><span class="reading-kind">第四期现场 · 小红书</span><h3>自由良渚三周年，把FDE与AI创业放在一起聊</h3><p>四位嘉宾的专业分享、圆桌与观众互动。18张精选现场图，回到这一场造浪现场。</p><b>打开现场图集 ↗</b></div></a></div>
         <div class="reading-more">
-          <a href="https://mp.weixin.qq.com/s/60THjm4L2tygvhmLh1SRvQ" target="_blank" rel="noopener noreferrer"><span>第一期复盘</span><b>群像比独角兽更有力量</b><i aria-hidden="true">↗</i></a>
-          <a href="https://mp.weixin.qq.com/s/5Sb3T793s_6IPeWIe-vu0Q" target="_blank" rel="noopener noreferrer"><span>第二期复盘</span><b>超级个体 + AI = 全球化公司</b><i aria-hidden="true">↗</i></a>
+          <a href="https://mp.weixin.qq.com/s/o_GKmWf9FXs52yGANTHZpQ" target="_blank" rel="noopener noreferrer"><span>第二场预告 · 公众号</span><b>同行已经用AI赚美金了</b><i aria-hidden="true">↗</i></a>
+          <a href="https://xhslink.com/m/3T12hW07d7w" target="_blank" rel="noopener noreferrer"><span>小红书合集 · 图文与视频</span><b>自由良渚 · AI造浪者现场合集</b><i aria-hidden="true">↗</i></a>
           <a href="https://mp.weixin.qq.com/s/rmJ6XUM9-IGLVx_qOo-zsQ" target="_blank" rel="noopener noreferrer"><span>第四期嘉宾介绍</span><b>企业AI服务、内容增长与一人开发，四条实战路径</b><i aria-hidden="true">↗</i></a>
           <a href="https://xhslink.cn/o/2DXN6ACdBLi" target="_blank" rel="noopener noreferrer"><span>第四期活动前预告</span><b>曲率出逃等四位嘉宾，准备拆解哪些问题？</b><i aria-hidden="true">↗</i></a>
         </div>
@@ -347,7 +371,6 @@ img[src$="ep3-workshop.jpg"]{object-position:50% 35%}
     <div class="photo-dialog-bottom"><button type="button" class="photo-prev">上一张</button><p class="photo-caption"></p><button type="button" class="photo-next">下一张</button></div>
   </dialog>
 
-  <details class="first-film wrap"><summary>回看第一期 · AI博主与创作者专场现场短片</summary><video controls playsinline preload="none" poster="assets/photo-04-first-group.jpg" aria-label="第一期现场短片"><source src="assets/ai-wavemakers-ep1-video.mp4" type="video/mp4" /></video></details>
 
   <footer>
     <div class="footer-inner">
